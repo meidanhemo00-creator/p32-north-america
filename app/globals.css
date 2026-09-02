@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: #001832;
+  --color-charcoal: #181717;
+  --color-paper: #fafafa;
+  --color-mist: #d0e4e8;
+
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jbmono);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #001832;
+}
+
+body {
+  background: var(--color-navy);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-mist);
+  color: var(--color-navy);
+}
+
+/* Thin, quiet scrollbar so it doesn't fight the visual system */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(208, 228, 232, 0.25);
+}
+
+/* Reusable placeholder treatment for pending photographic assets --
+   duotone gradient in brand colors + a clearly labelled tag, so layout
+   and motion are fully wired and a real image/video can drop straight in. */
+.asset-pending {
+  position: relative;
+  background:
+    linear-gradient(160deg, rgba(0, 24, 50, 0.85), rgba(24, 23, 23, 0.9)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(208, 228, 232, 0.06) 0px,
+      rgba(208, 228, 232, 0.06) 2px,
+      transparent 2px,
+      transparent 12px
+    );
+}
+.asset-pending::after {
+  content: attr(data-asset-label);
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  background: rgba(0, 24, 50, 0.6);
+  border: 1px solid rgba(208, 228, 232, 0.3);
+  padding: 0.35rem 0.6rem;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
