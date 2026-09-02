@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { MotionValue, motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { AssetPlaceholder } from "./AssetPlaceholder";
+import { SectionImage } from "./SectionImage";
 
 const PROBLEMS = [
   {
@@ -119,7 +119,7 @@ export function Gap() {
     <section id="gap" ref={sectionRef} className="relative h-[220vh] bg-charcoal">
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
         <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0">
-          <AssetPlaceholder label="Warehouse ceiling, CCTV dome, blurred figures" />
+          <SectionImage src="/images/gap-industrial.svg" alt="Dark industrial ceiling with surveillance domes, claustrophobic warehouse mood" />
         </motion.div>
         <div className="absolute inset-0 bg-charcoal/40" />
 

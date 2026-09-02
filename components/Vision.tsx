@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { AssetPlaceholder } from "./AssetPlaceholder";
+import { SectionImage } from "./SectionImage";
 
 export function Vision() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -45,7 +45,7 @@ export function Vision() {
           style={{ scale: imgScale, x: parallaxX, y: parallaxY }}
           className="absolute inset-[-5%]"
         >
-          <AssetPlaceholder label="Earth from orbit, night city-light grid" />
+          <SectionImage src="/images/vision-earth-orbit.svg" alt="Earth from orbit at night, city-light grid visible on the surface" />
         </motion.div>
         <motion.div
           style={{ opacity: glowOpacity }}

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import { SectionImage } from "./SectionImage";
 
 export function Uniqueness() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -36,7 +37,12 @@ export function Uniqueness() {
       className="relative h-[180vh] bg-paper text-navy"
     >
       <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden px-6 md:px-14">
-        <motion.div style={{ opacity: textOpacity }} className="max-w-3xl">
+        <SectionImage
+          src="/images/uniqueness-interchange.svg"
+          alt="Clean graphic aerial view of a highway interchange"
+          className="opacity-40 mix-blend-multiply"
+        />
+        <motion.div style={{ opacity: textOpacity }} className="relative max-w-3xl">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-navy/60">Our Uniqueness</p>
           <h2 className="mt-4 font-sans text-[9vw] font-black uppercase leading-[0.9] sm:text-[6vw] md:text-[4.2vw]">
             An objective,

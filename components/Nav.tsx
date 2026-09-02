@@ -34,7 +34,7 @@ export function Nav() {
       >
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
           <a href="#top" className="flex items-center gap-2" aria-label="P32 home">
-            <Logo className="h-6 w-auto text-paper" />
+            <Logo className="text-lg text-paper" />
           </a>
 
           <div className="flex items-center gap-4 md:gap-6">

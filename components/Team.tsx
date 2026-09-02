@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
-import { AssetPlaceholder } from "./AssetPlaceholder";
+import { SectionImage } from "./SectionImage";
 
 export function Team() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -47,10 +47,10 @@ export function Team() {
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div style={{ filter: blurFilter, x: driftX, y: driftY }} className="absolute inset-[-6%]">
-          <AssetPlaceholder label="Crowded crosswalk, one still figure among the blur" />
+          <SectionImage src="/images/team-crowd.svg" alt="Crowded urban crosswalk at night, one still figure among the blurred crowd" />
         </motion.div>
         <motion.div style={{ clipPath: clip }} className="absolute inset-[-6%]">
-          <AssetPlaceholder label="Same frame, sharp — the still figure" />
+          <SectionImage src="/images/team-crowd.svg" alt="" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-charcoal/60" />
 
