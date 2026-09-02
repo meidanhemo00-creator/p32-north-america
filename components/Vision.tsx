@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionImage } from "./SectionImage";
 import { Container } from "./Container";
+import { SectionLabel } from "./SectionLabel";
 
 export function Vision() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -39,7 +40,7 @@ export function Vision() {
       id="vision"
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="ground-dark relative h-[150vh]"
+      className="ground-dark relative h-[130vh]"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div
@@ -55,11 +56,11 @@ export function Vision() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
 
         <Container className="relative flex h-full flex-col items-center justify-center text-center">
+          <SectionLabel index="01" label="The Vision" tone="light" className="mb-6 md:mb-8" />
           <div className="glass-panel mx-auto max-w-3xl rounded-sm p-7 md:p-10">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">01 — The Vision</p>
             <motion.h2
               style={{ letterSpacing }}
-              className="mt-5 break-words font-sans text-[9.5vw] font-normal uppercase leading-[0.95] text-paper sm:text-[7vw] md:text-[4.6vw]"
+              className="break-normal font-sans text-[clamp(1.75rem,6vw,4.5rem)] font-normal uppercase leading-[0.98] text-paper"
             >
               Defense Solution
               <br />

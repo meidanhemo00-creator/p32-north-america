@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Container } from "./Container";
 import { Glow } from "./Glow";
 import { SectionImage } from "./SectionImage";
+import { SectionLabel } from "./SectionLabel";
 
 const FIELDS = [
   { name: "name", label: "Name", type: "text" },
@@ -13,7 +14,7 @@ const FIELDS = [
 
 export function Contact() {
   return (
-    <section id="contact" className="ground-dark relative overflow-hidden py-24 md:py-32">
+    <section id="contact" className="ground-dark relative overflow-hidden py-20 md:py-24">
       <div className="absolute inset-0 opacity-60 saturate-[0.55]">
         <SectionImage src="/photos/contact-skyline.jpg" alt="Silhouette looking out over a city skyline at night" />
       </div>
@@ -26,8 +27,8 @@ export function Contact() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">06 — Contact</p>
-          <h2 className="mt-5 font-sans text-5xl font-normal uppercase leading-[0.98] tracking-tight text-paper md:text-7xl">
+          <SectionLabel index="06" label="Contact" tone="light" className="mb-5" />
+          <h2 className="break-normal font-sans text-[clamp(1.75rem,6vw,4.25rem)] font-normal uppercase leading-[0.98] tracking-tight text-paper">
             Request a
             <br />
             Briefing

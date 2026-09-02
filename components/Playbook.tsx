@@ -1,34 +1,35 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { MotionValue, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, MotionValue, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { Container } from "./Container";
 import { Glow } from "./Glow";
 import { SectionImage } from "./SectionImage";
+import { SectionLabel } from "./SectionLabel";
 
 const STEPS = [
   {
     tag: "01",
     title: "Mission Deconstruction",
-    lead: "We don't just look at the problem; we reverse-engineer it to its core components.",
+    lead: "We reverse-engineer the problem to its core components.",
     body: "We break massive, seemingly impossible operational challenges down into distinct, solvable blocks — the \"what\" and the \"how,\" at a granular level, so no detail is left to chance.",
   },
   {
     tag: "02",
     title: "Technological Identification",
-    lead: "Scanning the global landscape for deep tech and existing innovations that fit the gap.",
+    lead: "Scanning the global landscape for deep tech that fits the gap.",
     body: "We continuously scout the global landscape — from defense innovations to cyber capabilities — to pinpoint the exact tools that match your specific mission gaps.",
   },
   {
     tag: "03",
     title: "Custom Development",
-    lead: "When the market falls short, we build. From AI architectures to specialized hardware.",
+    lead: "When the market falls short, we build the solution ourselves.",
     body: "We shift from curators to creators, engineering purpose-built technologies from the ground up when existing solutions aren't enough.",
   },
   {
     tag: "04",
     title: "Orchestration & Integration",
-    lead: "Turning disparate systems into a single, unified, and frictionless organism.",
+    lead: "Turning disparate systems into one unified, frictionless organism.",
     body: "A pile of advanced technology is useless without synergy. We connect custom code, hardware, and sensors so they operate as one seamless, unified entity.",
   },
 ];
@@ -38,7 +39,7 @@ function DeconstructVisual({ progress }: { progress: MotionValue<number> }) {
   const gx = useTransform(gap, (g) => `${g}px`);
   const negGx = useTransform(gap, (g) => `${-g}px`);
   return (
-    <div className="relative h-56 w-56 md:h-72 md:w-72">
+    <div className="relative h-56 w-56">
       <motion.div style={{ x: negGx, y: negGx }} className="absolute left-0 top-0 h-1/2 w-1/2 bg-mist" />
       <motion.div style={{ x: gx, y: negGx }} className="absolute right-0 top-0 h-1/2 w-1/2 bg-mist/70" />
       <motion.div style={{ x: negGx, y: gx }} className="absolute bottom-0 left-0 h-1/2 w-1/2 bg-mist/70" />
@@ -51,7 +52,7 @@ function ScanVisual({ progress }: { progress: MotionValue<number> }) {
   const sweep = useTransform(progress, [0, 1], ["0%", "100%"]);
   const dots = Array.from({ length: 36 });
   return (
-    <div className="relative grid h-56 w-56 grid-cols-6 gap-3 overflow-hidden md:h-72 md:w-72">
+    <div className="relative grid h-56 w-56 grid-cols-6 gap-3 overflow-hidden">
       {dots.map((_, i) => (
         <span key={i} className="h-2 w-2 rounded-full bg-mist/30" />
       ))}
@@ -71,7 +72,7 @@ function BuildVisual({ progress }: { progress: MotionValue<number> }) {
   const s2 = useTransform(h2, (v) => `${v * 100}%`);
   const s3 = useTransform(h3, (v) => `${v * 100}%`);
   return (
-    <div className="flex h-56 w-56 items-end gap-4 md:h-72 md:w-72">
+    <div className="flex h-56 w-56 items-end gap-4">
       <motion.div style={{ height: s1 }} className="w-1/3 self-end bg-mist/50" />
       <motion.div style={{ height: s2 }} className="w-1/3 self-end bg-mist/75" />
       <motion.div style={{ height: s3 }} className="w-1/3 self-end bg-mist" />
@@ -84,7 +85,7 @@ function IntegrateVisual({ progress }: { progress: MotionValue<number> }) {
   const off = useTransform(merge, (m) => m * 70);
   const nOff = useTransform(off, (v) => -v);
   return (
-    <div className="relative flex h-56 w-56 items-center justify-center md:h-72 md:w-72">
+    <div className="relative flex h-56 w-56 items-center justify-center">
       <motion.div style={{ x: nOff }} className="absolute h-24 w-24 rounded-full bg-mist/60" />
       <motion.div style={{ x: off }} className="absolute h-24 w-24 rounded-full bg-mist/60" />
       <motion.div style={{ scale: useTransform(merge, (m) => 1 - m * 0.3 + 0.3) }} className="absolute h-24 w-24 rounded-full border-2 border-paper" />
@@ -101,91 +102,103 @@ export function Playbook() {
     offset: ["start start", "end start"],
   });
 
-  const stageFloat = useTransform(scrollYProgress, [0, 1], [0, 5 - 0.001]);
+  const stageFloat = useTransform(scrollYProgress, [0, 1], [0, STEPS.length - 0.001]);
   const [activeStage, setActiveStage] = useState(0);
   const [hoverOverride, setHoverOverride] = useState<number | null>(null);
 
   useMotionValueEvent(stageFloat, "change", (v) => {
-    setActiveStage(Math.max(0, Math.min(4, Math.floor(v))));
+    setActiveStage(Math.max(0, Math.min(STEPS.length - 1, Math.floor(v))));
   });
 
-  // Fixed-length (5) array, same hook-call order every render — safe despite the loop.
-  const stage0 = useTransform(scrollYProgress, [0 / 5, 1 / 5], [0, 1]);
-  const stage1 = useTransform(scrollYProgress, [1 / 5, 2 / 5], [0, 1]);
-  const stage2 = useTransform(scrollYProgress, [2 / 5, 3 / 5], [0, 1]);
-  const stage3 = useTransform(scrollYProgress, [3 / 5, 4 / 5], [0, 1]);
-  const stage4 = useTransform(scrollYProgress, [4 / 5, 5 / 5], [0, 1]);
-  const stageProgresses = [stage0, stage1, stage2, stage3, stage4];
-
-  const closingOpacity = useTransform(scrollYProgress, [0.82, 0.92, 1], [0, 1, 1]);
-  const closingScale = useTransform(scrollYProgress, [0.82, 1], [0.9, 1]);
+  // Fixed-length (4) array, same hook-call order every render — safe despite the loop.
+  const stage0 = useTransform(scrollYProgress, [0 / 4, 1 / 4], [0, 1]);
+  const stage1 = useTransform(scrollYProgress, [1 / 4, 2 / 4], [0, 1]);
+  const stage2 = useTransform(scrollYProgress, [2 / 4, 3 / 4], [0, 1]);
+  const stage3 = useTransform(scrollYProgress, [3 / 4, 4 / 4], [0, 1]);
+  const stageProgresses = [stage0, stage1, stage2, stage3];
 
   const displayIndex = hoverOverride ?? activeStage;
-  const isClosing = activeStage === 4 && hoverOverride === null;
-  const Visual = VISUALS[Math.min(displayIndex, 3)];
 
   return (
-    <section id="playbook" ref={sectionRef} className="ground-dark relative h-[380vh]">
-      <div className="sticky top-0 h-screen overflow-hidden">
+    <section id="playbook" ref={sectionRef} className="ground-dark relative md:h-[240vh]">
+      <div className="relative flex flex-col justify-center py-16 md:sticky md:top-0 md:h-screen md:overflow-hidden md:py-12">
         <div className="absolute inset-0 opacity-70 saturate-[0.5] contrast-[1.1]">
           <SectionImage src="/photos/playbook-command.jpg" alt="Operators at a darkened command console, wall of monitors ahead" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/40" />
         <Glow className="right-[10%] top-1/3 -translate-y-1/2" size={800} />
-        <Container className="absolute left-0 right-0 top-8 md:top-10">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-mist">04 — The Playbook</span>
+
+        <Container className="relative flex flex-col gap-6 md:gap-9">
+          <SectionLabel index="04" label="The Playbook" tone="light" />
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-5">
+            {STEPS.map((step, i) => {
+              const isActive = i === displayIndex;
+              const CellVisual = VISUALS[i];
+              return (
+                <button
+                  key={step.tag}
+                  onMouseEnter={() => setHoverOverride(i)}
+                  onMouseLeave={() => setHoverOverride(null)}
+                  onFocus={() => setHoverOverride(i)}
+                  onBlur={() => setHoverOverride(null)}
+                  onClick={() => setHoverOverride(i)}
+                  className="relative flex min-h-[130px] flex-col justify-between overflow-hidden rounded-sm border p-4 text-left backdrop-blur-sm transition-colors duration-300 sm:min-h-[210px] md:h-[300px] md:p-7"
+                  style={{
+                    borderColor: isActive ? "rgba(208,228,232,0.5)" : "rgba(208,228,232,0.12)",
+                    backgroundColor: isActive ? "rgba(208,228,232,0.08)" : "rgba(0,0,0,0.25)",
+                  }}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className={`font-mono text-sm transition-colors duration-300 md:text-base ${isActive ? "text-paper" : "text-mist/40"}`}>
+                      {step.tag}
+                    </span>
+                    <div
+                      aria-hidden="true"
+                      className={`h-9 w-9 shrink-0 overflow-hidden transition-opacity duration-300 md:h-11 md:w-11 ${
+                        isActive ? "opacity-70" : "opacity-0"
+                      }`}
+                    >
+                      <div className="origin-top-right scale-[0.16] md:scale-[0.195]">
+                        <CellVisual progress={stageProgresses[i]} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="min-w-0">
+                    <h3
+                      className={`break-normal font-sans text-lg uppercase leading-[1.05] tracking-tight transition-colors duration-300 md:text-2xl ${
+                        isActive ? "text-paper" : "text-mist/55"
+                      }`}
+                    >
+                      {step.title}
+                    </h3>
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 6 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <p className="mt-2 font-sans text-sm font-light leading-snug text-mist md:text-base">{step.lead}</p>
+                          <p className="mt-2 hidden font-mono text-xs leading-relaxed text-mist/80 md:block md:text-sm">
+                            {step.body}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          <p className="text-center font-sans text-lg font-normal uppercase text-paper md:text-xl">
+            We deliver defense. <span className="font-mono font-light lowercase text-mist">we execute.</span>
+          </p>
         </Container>
-
-        {!isClosing ? (
-          <Container className="flex h-full flex-col items-center justify-center gap-10 md:flex-row md:justify-between">
-            <div className="w-full min-w-0 max-w-xl">
-              <div className="mb-8 flex flex-wrap gap-2 md:gap-3">
-                {STEPS.map((s, i) => (
-                  <button
-                    key={s.tag}
-                    onMouseEnter={() => setHoverOverride(i)}
-                    onMouseLeave={() => setHoverOverride(null)}
-                    onClick={() => setHoverOverride(i)}
-                    className={`rounded-full border px-3 py-1 font-mono text-xs transition-colors ${
-                      i === displayIndex
-                        ? "border-mist bg-mist text-navy"
-                        : "border-mist/25 text-mist/50 hover:border-mist/50 hover:text-mist"
-                    }`}
-                  >
-                    {s.tag}
-                  </button>
-                ))}
-              </div>
-              <motion.div key={displayIndex} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-                <h3 className="break-words font-sans text-[9vw] font-normal uppercase leading-[0.98] tracking-tight text-paper sm:text-4xl md:text-6xl">
-                  {STEPS[displayIndex].title}
-                </h3>
-                <p className="mt-5 font-sans text-xl font-light text-mist md:text-2xl">{STEPS[displayIndex].lead}</p>
-                <p className="mt-4 max-w-md font-mono text-lg leading-relaxed text-mist/90">
-                  {STEPS[displayIndex].body}
-                </p>
-              </motion.div>
-            </div>
-
-            <div className="glass-panel flex items-center justify-center rounded-sm p-10">
-              <Visual progress={stageProgresses[displayIndex]} />
-            </div>
-          </Container>
-        ) : (
-          <motion.div
-            style={{ opacity: closingOpacity, scale: closingScale }}
-            className="flex h-full flex-col items-center justify-center px-6 text-center"
-          >
-            <p className="font-sans text-4xl font-normal uppercase text-paper sm:text-6xl md:text-8xl">
-              We deliver defense.
-              <br />
-              <span className="font-mono font-light lowercase text-mist">we execute.</span>
-            </p>
-            <p className="mt-6 font-mono text-sm uppercase tracking-[0.3em] text-mist/70">
-              From high-level architecture to the red button.
-            </p>
-          </motion.div>
-        )}
       </div>
     </section>
   );

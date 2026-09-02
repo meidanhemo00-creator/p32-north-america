@@ -5,6 +5,7 @@ import { motion, useMotionValue, useScroll, useSpring, useTransform } from "fram
 import { SectionImage } from "./SectionImage";
 import { Container } from "./Container";
 import { Glow } from "./Glow";
+import { SectionLabel } from "./SectionLabel";
 
 const TAGS = ["Operational Command", "Deep Tech R&D", "Field-Tested", "Multi-Domain"];
 
@@ -50,7 +51,7 @@ export function Team() {
       id="team"
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="ground-dark relative h-[190vh]"
+      className="ground-dark relative h-[150vh]"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <Glow className="left-1/2 top-0 -translate-x-1/2" size={900} />
@@ -63,14 +64,12 @@ export function Team() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/20" />
 
-        <Container className="relative flex h-full flex-col justify-between py-24 md:py-28">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">
-              05 — A Small Team for Big Challenges
-            </p>
+        <Container className="relative flex h-full flex-col justify-between py-16 md:py-20">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <SectionLabel index="05" label="A Small Team for Big Challenges" tone="light" className="mb-6" />
             <motion.h2
               style={{ opacity: headOpacity }}
-              className="mt-6 break-words font-sans text-[13vw] font-normal uppercase leading-[0.94] tracking-tight text-paper sm:text-8xl md:text-[7.5vw]"
+              className="break-normal font-sans text-[clamp(1.75rem,7.5vw,4.75rem)] font-normal uppercase leading-[0.98] tracking-tight text-paper"
             >
               The world sees
               <br />

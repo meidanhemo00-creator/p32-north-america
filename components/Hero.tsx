@@ -7,6 +7,7 @@ import { Container } from "./Container";
 import { Glow } from "./Glow";
 import { Marquee } from "./Marquee";
 import { SectionImage } from "./SectionImage";
+import { GridPattern } from "./GridPattern";
 
 const TICKER = [
   "DEEP TECH",
@@ -43,11 +44,12 @@ export function Hero() {
   const glowOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section id="top" ref={sectionRef} className="ground-dark relative h-[160vh]">
+    <section id="top" ref={sectionRef} className="ground-dark relative h-[130vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         <div className="absolute inset-0 opacity-[0.4] saturate-[0.3] contrast-[1.1] blur-[1px]">
           <SectionImage src="/photos/hero-crowd.jpg" alt="Abstract overhead view of a crowd dispersing through a city street at night" />
         </div>
+        <GridPattern className="text-mist/[0.08]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black" />
         <motion.div style={{ opacity: glowOpacity }}>
           <Glow className="left-1/2 top-[8%] -translate-x-1/3" size={1000} color="#d0e4e8" />
@@ -63,8 +65,8 @@ export function Hero() {
 
         <div className="relative flex h-full flex-col items-center justify-end text-center">
           <Container className="flex flex-col items-center pb-16 md:pb-20">
-            <motion.div style={{ opacity: headlineOpacity, y: headlineY }} className="mx-auto max-w-5xl">
-              <h1 className="font-sans text-[9.5vw] font-normal uppercase leading-[0.94] tracking-[-0.01em] text-paper break-words sm:text-[7.5vw] md:text-[7vw]">
+            <motion.div style={{ opacity: headlineOpacity, y: headlineY }} className="mx-auto max-w-4xl">
+              <h1 className="break-normal font-sans text-[clamp(1.75rem,8vw,5.5rem)] font-normal uppercase leading-[0.98] tracking-[-0.01em] text-paper">
                 Deconstructing
                 <br />
                 <span className="text-mist">Challenges.</span>

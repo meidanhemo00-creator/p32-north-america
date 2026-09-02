@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionImage } from "./SectionImage";
 import { Container } from "./Container";
+import { SectionLabel } from "./SectionLabel";
 
 export function Uniqueness() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -35,13 +36,13 @@ export function Uniqueness() {
       id="uniqueness"
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="relative h-[160vh] bg-paper text-navy"
+      className="relative h-[130vh] bg-paper text-navy"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
       <Container className="grid h-screen grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
         <motion.div style={{ opacity: textOpacity }} className="relative z-10">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-navy/60">03 — Our Uniqueness</p>
-          <h2 className="mt-5 font-sans text-[10vw] font-normal uppercase leading-[0.94] sm:text-[6vw] md:text-[3.6vw]">
+          <SectionLabel index="03" label="Our Uniqueness" tone="dark" className="mb-5" />
+          <h2 className="break-normal font-sans text-[clamp(1.75rem,6vw,4.25rem)] font-normal uppercase leading-[0.98]">
             An objective,
             <br />
             <span className="font-light normal-case italic">trusted executor.</span>

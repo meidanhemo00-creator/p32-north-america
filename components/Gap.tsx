@@ -5,6 +5,7 @@ import { MotionValue, motion, useMotionValue, useScroll, useSpring, useTransform
 import { SectionImage } from "./SectionImage";
 import { Container } from "./Container";
 import { Glow } from "./Glow";
+import { SectionLabel } from "./SectionLabel";
 
 const PROBLEMS = [
   {
@@ -131,12 +132,12 @@ function GapBlock({
       </span>
       <span className="relative font-mono text-xs opacity-60">{tag}</span>
       <div className="relative">
-        <h3 className="break-words font-sans text-2xl font-normal uppercase leading-snug tracking-tight md:text-3xl">{title}</h3>
+        <h3 className="break-normal font-sans text-xl font-normal uppercase leading-snug tracking-tight md:text-2xl">{title}</h3>
         <motion.p
           initial={{ opacity: 0, height: 0 }}
           whileHover={{ opacity: 1, height: "auto" }}
           transition={{ duration: 0.3 }}
-          className="mt-3 overflow-hidden font-mono text-base leading-relaxed opacity-85 group-focus-within:opacity-100"
+          className="mt-3 overflow-hidden font-mono text-base leading-relaxed opacity-85 group-focus-within:opacity-100 md:text-lg"
         >
           {body}
         </motion.p>
@@ -156,7 +157,7 @@ export function Gap() {
   const headOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section id="gap" ref={sectionRef} className="ground-dark relative h-[200vh]">
+    <section id="gap" ref={sectionRef} className="ground-dark relative h-[160vh]">
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
         <Glow className="right-[8%] top-[12%]" size={700} />
         <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0 saturate-[0.35] contrast-[1.1]">
@@ -165,15 +166,15 @@ export function Gap() {
         <div className="absolute inset-0 bg-black/40" />
 
         <Container className="flex flex-col items-center text-center">
-          <motion.div style={{ opacity: headOpacity }} className="relative mx-auto pt-24 md:pt-28">
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">02 — The Gap in Modern Defense</p>
-            <h2 className="mx-auto mt-4 max-w-3xl break-words font-sans text-[10.5vw] font-normal uppercase leading-[0.98] tracking-tight text-paper sm:text-6xl md:text-7xl">
+          <motion.div style={{ opacity: headOpacity }} className="relative mx-auto flex flex-col items-center pt-16 md:pt-20">
+            <SectionLabel index="02" label="The Gap in Modern Defense" tone="light" className="mb-5" />
+            <h2 className="mx-auto max-w-3xl break-normal font-sans text-[clamp(1.75rem,7vw,4rem)] font-normal uppercase leading-[1.02] tracking-tight text-paper">
               Today&apos;s challenges are <span className="text-mist">threefold.</span>
             </h2>
           </motion.div>
         </Container>
 
-        <div className="relative flex flex-1 flex-col items-center justify-center gap-8 overflow-y-auto px-6 pb-16 pt-8 lg:flex-row lg:gap-0 lg:overflow-visible lg:px-14">
+        <div className="relative flex flex-1 flex-col items-center justify-center gap-8 overflow-y-auto px-6 pb-12 pt-8 lg:flex-row lg:gap-0 lg:overflow-visible lg:px-14">
           {PROBLEMS.map((problem, i) => (
             <GapBlock
               key={problem.tag}
