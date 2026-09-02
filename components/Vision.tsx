@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionImage } from "./SectionImage";
+import { Container } from "./Container";
 
 export function Vision() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -53,25 +54,35 @@ export function Vision() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-transparent to-navy" />
 
-        <div className="relative flex h-full flex-col justify-center px-6 md:px-14">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">The Vision</p>
-          <motion.h2
-            style={{ letterSpacing }}
-            className="mt-4 max-w-5xl font-sans text-[11vw] font-extrabold uppercase leading-[0.95] text-paper sm:text-[7vw] md:text-[5vw]"
-          >
-            Defense Solution Architects
-          </motion.h2>
-          <p className="mt-3 max-w-2xl font-sans text-2xl font-light italic text-mist md:text-4xl">
-            that will make your <span className="not-italic text-paper">mission possible</span>.
-          </p>
-          <motion.p
-            style={{ opacity: subOpacity, y: subY }}
-            className="mt-8 max-w-md font-mono text-sm leading-relaxed text-mist/80"
-          >
-            trusted by nations and intelligence agencies around the globe to bridge the gap
-            between complex operational needs and cutting-edge execution.
-          </motion.p>
-        </div>
+        <Container className="relative flex h-full flex-col justify-center">
+          <div className="glass-panel max-w-3xl rounded-sm p-7 md:p-10">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">01 — The Vision</p>
+            <motion.h2
+              style={{ letterSpacing }}
+              className="mt-4 font-sans text-[11vw] font-extrabold uppercase leading-[0.95] text-paper sm:text-[7vw] md:text-[4.6vw]"
+            >
+              Defense Solution
+              <br />
+              Architects
+            </motion.h2>
+            <p className="mt-3 max-w-2xl font-sans text-xl font-light italic text-mist md:text-3xl">
+              that will make your <span className="not-italic text-paper">mission possible</span>.
+            </p>
+            <motion.p
+              style={{ opacity: subOpacity, y: subY }}
+              className="mt-6 max-w-md font-mono text-sm leading-relaxed text-mist/80"
+            >
+              trusted by nations and intelligence agencies around the globe to bridge the gap
+              between complex operational needs and cutting-edge execution.
+            </motion.p>
+          </div>
+
+          <div className="mt-8 flex gap-10 font-mono text-[11px] uppercase tracking-[0.25em] text-mist/50">
+            <span>Global Reach</span>
+            <span>Multi-Domain</span>
+            <span>Classified-Ready</span>
+          </div>
+        </Container>
       </div>
     </section>
   );

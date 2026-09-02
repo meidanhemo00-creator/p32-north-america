@@ -1,9 +1,10 @@
 import { LogoMark } from "./Logo";
+import { Container } from "./Container";
 
 export function Footer() {
   return (
-    <footer className="border-t border-mist/15 bg-navy px-6 py-10 md:px-14">
-      <div className="mx-auto flex max-w-[1600px] flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <footer className="border-t border-mist/15 bg-navy py-10">
+      <Container className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-3">
           <LogoMark className="h-4 w-4 text-mist" />
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-mist/70">
@@ -20,7 +21,7 @@ export function Footer() {
         <p className="font-mono text-xs text-mist/40">
           © {new Date().getFullYear()} P32 [ Placeholder — legal entity name ]. All rights reserved.
         </p>
-      </div>
+      </Container>
     </footer>
   );
 }

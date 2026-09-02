@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Container } from "./Container";
+import { Glow } from "./Glow";
 
 const FIELDS = [
   { name: "name", label: "Name", type: "text" },
@@ -10,24 +12,35 @@ const FIELDS = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative bg-navy px-6 py-28 md:px-14 md:py-40">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6 }}
-        className="mx-auto max-w-2xl"
-      >
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">Contact</p>
-        <h2 className="mt-4 font-sans text-4xl font-bold leading-tight text-paper md:text-6xl">
-          Request a Briefing
-        </h2>
-        <p className="mt-4 max-w-md font-mono text-sm leading-relaxed text-mist/70">
-          For qualified inquiries from nations, agencies, and prime partners.{" "}
-          <span className="text-mist">[ Placeholder — confirm eligibility copy ]</span>
-        </p>
+    <section id="contact" className="relative overflow-hidden bg-navy py-28 md:py-40">
+      <Glow className="left-[10%] top-0 -translate-y-1/3" size={800} />
+      <Container className="grid gap-14 md:grid-cols-[0.9fr_1.1fr] md:gap-20">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">06 — Contact</p>
+          <h2 className="mt-4 font-sans text-5xl font-black uppercase leading-[0.95] text-paper md:text-7xl">
+            Request a
+            <br />
+            Briefing
+          </h2>
+          <p className="mt-6 max-w-md font-mono text-sm leading-relaxed text-mist/70">
+            For qualified inquiries from nations, agencies, and prime partners.{" "}
+            <span className="text-mist">[ Placeholder — confirm eligibility copy ]</span>
+          </p>
+        </motion.div>
 
-        <form className="mt-12 flex flex-col gap-8" onSubmit={(e) => e.preventDefault()}>
+        <motion.form
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="glass-panel flex flex-col gap-8 rounded-sm p-8 md:p-10"
+          onSubmit={(e) => e.preventDefault()}
+        >
           {FIELDS.map((field, i) => (
             <motion.div
               key={field.name}
@@ -80,15 +93,15 @@ export function Contact() {
             type="submit"
             whileHover={{ letterSpacing: "0.14em" }}
             transition={{ duration: 0.25 }}
-            className="mt-4 w-fit border border-mist/40 px-8 py-3 font-mono text-xs uppercase tracking-[0.2em] text-paper transition-colors hover:border-mist hover:bg-mist hover:text-navy"
+            className="mt-2 w-fit border border-mist/40 px-8 py-3 font-mono text-xs uppercase tracking-[0.2em] text-paper transition-colors hover:border-mist hover:bg-mist hover:text-navy"
           >
             Submit Request
           </motion.button>
           <p className="font-mono text-[11px] text-mist/40">
             [ Placeholder — form submission is not yet wired to a backend/email service ]
           </p>
-        </form>
-      </motion.div>
+        </motion.form>
+      </Container>
     </section>
   );
 }

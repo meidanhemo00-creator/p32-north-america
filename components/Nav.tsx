@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { Logo } from "./Logo";
+import { Container } from "./Container";
 
 const LINKS = [
   { href: "#vision", label: "Vision" },
@@ -22,17 +23,19 @@ export function Nav() {
 
   const bg = useTransform(scrollY, [0, typeof window !== "undefined" ? window.innerHeight * 0.7 : 500], [
     "rgba(0,24,50,0)",
-    "rgba(0,24,50,0.92)",
+    "rgba(0,24,50,0.75)",
   ]);
+  const blurPx = useTransform(scrollY, [0, typeof window !== "undefined" ? window.innerHeight * 0.7 : 500], [0, 16]);
+  const backdropFilter = useTransform(blurPx, (b) => `blur(${b}px)`);
 
   return (
     <>
       <motion.header
-        style={{ backgroundColor: bg }}
-        className="fixed inset-x-0 top-0 z-50 backdrop-blur-0 transition-[backdrop-filter] duration-300"
+        style={{ backgroundColor: bg, backdropFilter, WebkitBackdropFilter: backdropFilter }}
+        className="fixed inset-x-0 top-0 z-50 border-b border-mist/0 transition-[border-color] duration-500 data-[solid=true]:border-mist/10"
         data-solid={solid}
       >
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 md:px-10">
+        <Container className="flex items-center justify-between py-5">
           <a href="#top" className="flex items-center gap-2" aria-label="P32 home">
             <Logo className="text-lg text-paper" />
           </a>
@@ -54,7 +57,7 @@ export function Nav() {
               <span className="h-px w-4 self-end bg-mist transition-transform group-hover:-translate-x-0.5" />
             </button>
           </div>
-        </div>
+        </Container>
       </motion.header>
 
       <AnimatePresence>
@@ -81,7 +84,7 @@ export function Nav() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.06, duration: 0.5 }}
-                className="font-sans text-[13vw] font-light leading-[1.05] text-paper transition-colors hover:text-mist md:text-[6vw]"
+                className="font-sans text-[13vw] font-black uppercase leading-[1.05] text-paper transition-colors hover:text-mist md:text-[6vw]"
               >
                 {link.label}
               </motion.a>

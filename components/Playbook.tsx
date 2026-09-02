@@ -2,6 +2,8 @@
 
 import { useRef, useState } from "react";
 import { MotionValue, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { Container } from "./Container";
+import { Glow } from "./Glow";
 
 const STEPS = [
   {
@@ -124,22 +126,25 @@ export function Playbook() {
   return (
     <section id="playbook" ref={sectionRef} className="relative h-[440vh] bg-navy">
       <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="absolute left-6 top-8 font-mono text-xs uppercase tracking-[0.3em] text-mist md:left-14 md:top-10">
-          The Playbook
-        </div>
+        <Glow className="right-[10%] top-1/3 -translate-y-1/2" size={800} />
+        <Container className="absolute left-0 right-0 top-8 md:top-10">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-mist">04 — The Playbook</span>
+        </Container>
 
         {!isClosing ? (
-          <div className="flex h-full flex-col items-center justify-center gap-10 px-6 md:flex-row md:justify-between md:px-14">
+          <Container className="flex h-full flex-col items-center justify-center gap-10 md:flex-row md:justify-between">
             <div className="max-w-xl">
-              <div className="mb-6 flex gap-3 md:gap-4">
+              <div className="mb-8 flex gap-2 md:gap-3">
                 {STEPS.map((s, i) => (
                   <button
                     key={s.tag}
                     onMouseEnter={() => setHoverOverride(i)}
                     onMouseLeave={() => setHoverOverride(null)}
                     onClick={() => setHoverOverride(i)}
-                    className={`font-mono text-sm transition-colors ${
-                      i === displayIndex ? "text-paper" : "text-mist/40"
+                    className={`rounded-full border px-3 py-1 font-mono text-xs transition-colors ${
+                      i === displayIndex
+                        ? "border-mist bg-mist text-navy"
+                        : "border-mist/25 text-mist/50 hover:border-mist/50 hover:text-mist"
                     }`}
                   >
                     {s.tag}
@@ -147,7 +152,7 @@ export function Playbook() {
                 ))}
               </div>
               <motion.div key={displayIndex} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-                <h3 className="font-sans text-4xl font-bold leading-tight text-paper md:text-5xl">
+                <h3 className="font-sans text-4xl font-black uppercase leading-[0.95] text-paper md:text-6xl">
                   {STEPS[displayIndex].title}
                 </h3>
                 <p className="mt-4 font-sans text-lg font-light text-mist md:text-xl">{STEPS[displayIndex].lead}</p>
@@ -157,16 +162,16 @@ export function Playbook() {
               </motion.div>
             </div>
 
-            <div className="flex items-center justify-center">
+            <div className="glass-panel flex items-center justify-center rounded-sm p-10">
               <Visual progress={stageProgresses[displayIndex]} />
             </div>
-          </div>
+          </Container>
         ) : (
           <motion.div
             style={{ opacity: closingOpacity, scale: closingScale }}
             className="flex h-full flex-col items-center justify-center px-6 text-center"
           >
-            <p className="font-sans text-4xl font-bold text-paper sm:text-6xl md:text-7xl">
+            <p className="font-sans text-4xl font-black uppercase text-paper sm:text-6xl md:text-7xl">
               We deliver defense.
               <br />
               <span className="font-mono font-light lowercase text-mist">we execute.</span>

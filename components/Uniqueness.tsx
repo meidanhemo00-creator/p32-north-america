@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionImage } from "./SectionImage";
+import { Container } from "./Container";
 
 export function Uniqueness() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -36,52 +37,56 @@ export function Uniqueness() {
       onPointerMove={handlePointerMove}
       className="relative h-[180vh] bg-paper text-navy"
     >
-      <div className="sticky top-0 flex h-screen flex-col justify-center overflow-hidden px-6 md:px-14">
-        <SectionImage
-          src="/images/uniqueness-interchange.svg"
-          alt="Clean graphic aerial view of a highway interchange"
-          className="opacity-40 mix-blend-multiply"
-        />
-        <motion.div style={{ opacity: textOpacity }} className="relative max-w-3xl">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-navy/60">Our Uniqueness</p>
-          <h2 className="mt-4 font-sans text-[9vw] font-black uppercase leading-[0.9] sm:text-[6vw] md:text-[4.2vw]">
+      <div className="sticky top-0 h-screen overflow-hidden">
+      <Container className="grid h-screen grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+        <motion.div style={{ opacity: textOpacity }} className="relative z-10">
+          <p className="font-mono text-xs uppercase tracking-[0.3em] text-navy/60">03 — Our Uniqueness</p>
+          <h2 className="mt-4 font-sans text-[10vw] font-black uppercase leading-[0.92] sm:text-[6vw] md:text-[3.6vw]">
             An objective,
             <br />
             <span className="font-light normal-case italic">trusted executor.</span>
           </h2>
-          <p className="mt-6 max-w-xl font-mono text-sm leading-relaxed text-navy/70">
+          <p className="mt-6 max-w-md font-mono text-sm leading-relaxed text-navy/70">
             p32 operates without conflict of interest. we manage the entire lifecycle — from
             scouting and development, to integration — to ensure an unfair advantage in the field.
           </p>
         </motion.div>
 
-        <motion.svg
-          style={{ skewX, skewY }}
-          viewBox="0 0 1200 500"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[60%] w-full opacity-70"
-          fill="none"
-        >
-          <motion.path
-            d="M0 420 C 250 420 260 120 480 120 C 620 120 620 320 760 320 C 900 320 900 60 1200 60"
-            stroke="#001832"
-            strokeWidth="2"
-            style={{ pathLength }}
+        <div className="glass-panel-light relative h-[45vh] overflow-hidden rounded-sm md:h-[60vh]">
+          <SectionImage
+            src="/images/uniqueness-interchange.svg"
+            alt="Clean graphic aerial view of a highway interchange"
+            className="opacity-50 mix-blend-multiply"
           />
-          <motion.path
-            d="M0 300 C 220 300 300 400 500 400 C 680 400 700 180 900 180 C 1050 180 1080 340 1200 340"
-            stroke="#001832"
-            strokeOpacity="0.35"
-            strokeWidth="1.5"
-            style={{ pathLength }}
-          />
-        </motion.svg>
+          <motion.svg
+            style={{ skewX, skewY }}
+            viewBox="0 0 1200 500"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-[80%] w-full opacity-80"
+            fill="none"
+          >
+            <motion.path
+              d="M0 420 C 250 420 260 120 480 120 C 620 120 620 320 760 320 C 900 320 900 60 1200 60"
+              stroke="#001832"
+              strokeWidth="2"
+              style={{ pathLength }}
+            />
+            <motion.path
+              d="M0 300 C 220 300 300 400 500 400 C 680 400 700 180 900 180 C 1050 180 1080 340 1200 340"
+              stroke="#001832"
+              strokeOpacity="0.35"
+              strokeWidth="1.5"
+              style={{ pathLength }}
+            />
+          </motion.svg>
 
-        <motion.div
-          style={{ scale: numeralScale, opacity: numeralOpacity }}
-          className="pointer-events-none absolute bottom-10 right-6 font-mono text-[18vw] font-bold leading-none text-navy/90 md:right-14 md:text-[9vw]"
-        >
-          01
-        </motion.div>
+          <motion.div
+            style={{ scale: numeralScale, opacity: numeralOpacity }}
+            className="pointer-events-none absolute bottom-4 right-4 font-mono text-[7rem] font-bold leading-none text-navy/90 md:text-[9rem]"
+          >
+            01
+          </motion.div>
+        </div>
+      </Container>
       </div>
     </section>
   );

@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MotionValue, motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionImage } from "./SectionImage";
+import { Container } from "./Container";
 
 const PROBLEMS = [
   {
@@ -10,20 +11,32 @@ const PROBLEMS = [
     title: "An Evolving Technological Landscape",
     body: "Today's tools age fast. What answered yesterday's threat rarely answers tomorrow's.",
     dir: { x: -1, y: -0.4 },
+    rotate: -4,
+    tone: "dark" as const,
   },
   {
     tag: "02",
     title: "The Friction of Integrating Disparate Systems",
     body: "Best-in-class components rarely speak the same language once they're in the field.",
     dir: { x: 0, y: 1 },
+    rotate: 2,
+    tone: "light" as const,
   },
   {
     tag: "03",
     title: "The Extreme Security Risk of the Open Market",
     body: "Exposing operational needs to vendors is, itself, an exposure.",
     dir: { x: 1, y: -0.4 },
+    rotate: -2,
+    tone: "mist" as const,
   },
 ];
+
+const TONE_CLASSES = {
+  dark: "bg-charcoal/90 border-mist/15 text-paper",
+  light: "bg-paper border-paper/40 text-navy",
+  mist: "bg-navy border-mist/25 text-paper",
+};
 
 function GapBlock({
   index,
@@ -31,6 +44,8 @@ function GapBlock({
   title,
   body,
   dir,
+  rotate,
+  tone,
   scrollYProgress,
   focused,
   setFocused,
@@ -40,6 +55,8 @@ function GapBlock({
   title: string;
   body: string;
   dir: { x: number; y: number };
+  rotate: number;
+  tone: "dark" | "light" | "mist";
   scrollYProgress: MotionValue<number>;
   focused: number | null;
   setFocused: (i: number | null) => void;
@@ -49,15 +66,27 @@ function GapBlock({
   const dragging = useRef(false);
   const startX = useRef(0);
 
+  // The angled/overlapping stack only makes sense once cards sit side by
+  // side (md+); on a single mobile column, rotation just causes overlap.
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  const activeRotate = isDesktop ? rotate : 0;
+
   const scrollSpread = useTransform(scrollYProgress, [0.15, 0.65], [0, 1]);
 
   const x = useTransform([scrollSpread, springOpen], (v) => {
     const [s, m] = v as number[];
-    return dir.x * (s * 140 + m);
+    return dir.x * (s * 100 + m);
   });
   const y = useTransform([scrollSpread, springOpen], (v) => {
     const [s, m] = v as number[];
-    return dir.y * (s * 90 + m * 0.4);
+    return dir.y * (s * 60 + m * 0.4);
   });
   const opacity = useTransform(scrollYProgress, [0.05, 0.2], [0, 1]);
   const isDimmed = focused !== null && focused !== index;
@@ -79,28 +108,38 @@ function GapBlock({
 
   return (
     <motion.div
-      style={{ x, y, opacity }}
-      animate={{ scale: isDimmed ? 0.94 : 1, filter: isDimmed ? "brightness(0.55)" : "brightness(1)" }}
+      style={{ x, y, opacity, rotate: activeRotate }}
+      animate={{
+        scale: isDimmed ? 0.94 : focused === index ? 1.04 : 1,
+        rotate: isDimmed ? activeRotate : focused === index ? 0 : activeRotate,
+        zIndex: focused === index ? 20 : 10 - index,
+      }}
       transition={{ duration: 0.4 }}
       onHoverStart={() => setFocused(index)}
       onHoverEnd={() => setFocused(null)}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMoveHandler}
       onPointerUp={onPointerUp}
-      className="group relative w-full max-w-sm cursor-grab touch-pan-y select-none border border-mist/20 bg-navy/70 p-6 backdrop-blur-sm active:cursor-grabbing md:p-8"
+      className={`group relative flex h-72 w-full max-w-sm shrink-0 cursor-grab touch-pan-y select-none flex-col justify-between overflow-hidden rounded-sm border p-7 shadow-2xl shadow-black/40 backdrop-blur-sm active:cursor-grabbing md:-ml-14 md:h-80 md:w-80 md:p-8 md:first:ml-0 ${TONE_CLASSES[tone]}`}
     >
-      <span className="font-mono text-xs text-mist/60">{tag}</span>
-      <h3 className="mt-3 font-sans text-xl font-semibold leading-snug text-paper md:text-2xl">
-        {title}
-      </h3>
-      <motion.p
-        initial={{ opacity: 0, height: 0 }}
-        whileHover={{ opacity: 1, height: "auto" }}
-        transition={{ duration: 0.3 }}
-        className="mt-3 overflow-hidden font-mono text-sm leading-relaxed text-mist/80 group-focus-within:opacity-100"
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-8 -right-4 font-mono text-[9rem] font-black leading-none opacity-[0.08]"
       >
-        {body}
-      </motion.p>
+        {tag}
+      </span>
+      <span className="relative font-mono text-xs opacity-60">{tag}</span>
+      <div className="relative">
+        <h3 className="font-sans text-xl font-bold uppercase leading-snug md:text-2xl">{title}</h3>
+        <motion.p
+          initial={{ opacity: 0, height: 0 }}
+          whileHover={{ opacity: 1, height: "auto" }}
+          transition={{ duration: 0.3 }}
+          className="mt-3 overflow-hidden font-mono text-sm leading-relaxed opacity-75 group-focus-within:opacity-100"
+        >
+          {body}
+        </motion.p>
+      </div>
     </motion.div>
   );
 }
@@ -123,15 +162,16 @@ export function Gap() {
         </motion.div>
         <div className="absolute inset-0 bg-charcoal/40" />
 
-        <motion.div style={{ opacity: headOpacity }} className="relative px-6 pt-24 md:px-14 md:pt-28">
-          <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">The Gap in Modern Defense</p>
-          <h2 className="mt-3 max-w-3xl font-sans text-3xl font-light leading-tight text-paper md:text-5xl">
-            Today&apos;s operational challenges are{" "}
-            <span className="font-bold uppercase">threefold</span>.
-          </h2>
-        </motion.div>
+        <Container>
+          <motion.div style={{ opacity: headOpacity }} className="relative pt-24 md:pt-28">
+            <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">02 — The Gap in Modern Defense</p>
+            <h2 className="mt-3 max-w-3xl font-sans text-4xl font-black uppercase leading-[0.95] text-paper md:text-6xl">
+              Today&apos;s challenges are <span className="text-mist">threefold.</span>
+            </h2>
+          </motion.div>
+        </Container>
 
-        <div className="relative flex flex-1 flex-col items-center justify-center gap-6 overflow-y-auto px-6 pb-16 md:flex-row md:gap-8 md:overflow-visible md:px-14">
+        <div className="relative flex flex-1 flex-col items-center justify-center gap-8 overflow-y-auto px-6 pb-16 pt-8 md:flex-row md:gap-0 md:overflow-visible md:px-14">
           {PROBLEMS.map((problem, i) => (
             <GapBlock
               key={problem.tag}

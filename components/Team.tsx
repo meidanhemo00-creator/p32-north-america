@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionImage } from "./SectionImage";
+import { Container } from "./Container";
 
 export function Team() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -54,26 +55,28 @@ export function Team() {
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-charcoal/60" />
 
-        <div className="relative flex h-full flex-col items-center justify-center px-6 text-center md:px-14">
+        <Container className="relative flex h-full flex-col items-center justify-center text-center">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">
-            A Small Team for Big Challenges
+            05 — A Small Team for Big Challenges
           </p>
           <motion.h2
             style={{ opacity: line1Opacity }}
-            className="mt-6 max-w-3xl font-sans text-4xl font-bold leading-[1.05] text-paper sm:text-6xl md:text-7xl"
+            className="mt-6 max-w-4xl font-sans text-5xl font-black uppercase leading-[0.95] text-paper sm:text-7xl md:text-8xl"
           >
-            The world sees the outcome.
+            The world sees
+            <br />
+            the outcome.
           </motion.h2>
           <motion.p
             style={{ opacity: line2Opacity, y: line2Y }}
-            className="mt-4 max-w-lg font-mono text-sm font-light lowercase leading-relaxed text-mist/80 md:text-base"
+            className="glass-panel mt-8 max-w-lg rounded-sm p-6 font-mono text-sm font-light lowercase leading-relaxed text-mist/90 md:text-base"
           >
             it almost never sees the people who built it. our team combines elite operational
             command experience with decades of proven technological innovation — we come from the
             units that faced these challenges, and bring the track record of scaling ideas into
             successful war capabilities based on advanced technology.
           </motion.p>
-        </div>
+        </Container>
 
         <motion.div
           style={{ scale: markScale, opacity: markOpacity }}

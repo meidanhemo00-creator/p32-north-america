@@ -3,6 +3,18 @@
 import { useEffect, useRef } from "react";
 import { animate, motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { ParticleField } from "./ParticleField";
+import { Container } from "./Container";
+import { Glow } from "./Glow";
+import { Marquee } from "./Marquee";
+
+const TICKER = [
+  "DEEP TECH",
+  "CYBER CAPABILITIES",
+  "CUSTOM HARDWARE",
+  "AI ARCHITECTURES",
+  "SENSOR FUSION",
+  "SYSTEMS INTEGRATION",
+];
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -27,10 +39,16 @@ export function Hero() {
   const fieldScale = useTransform(scrollYProgress, [0.6, 1], [1, 1.6]);
   const fieldBlur = useTransform(scrollYProgress, [0.6, 1], [0, 14]);
   const fieldFilter = useTransform(fieldBlur, (b) => `blur(${b}px)`);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section id="top" ref={sectionRef} className="relative h-[180vh] bg-navy">
       <div className="sticky top-0 h-screen overflow-hidden">
+        <motion.div style={{ opacity: glowOpacity }}>
+          <Glow className="left-1/2 top-[8%] -translate-x-1/3" size={1100} />
+          <Glow className="right-0 bottom-[20%] translate-x-1/3" size={700} color="#001832" />
+        </motion.div>
+
         <motion.div
           style={{ scale: fieldScale, filter: fieldFilter }}
           className="absolute inset-0"
@@ -38,24 +56,23 @@ export function Hero() {
           <ParticleField progress={assembly} className="h-full w-full" />
         </motion.div>
 
-        <div className="relative flex h-full flex-col justify-end px-6 pb-24 md:px-14 md:pb-28">
-          <motion.div style={{ opacity: headlineOpacity, y: headlineY }} className="max-w-4xl">
-            <h1 className="font-sans text-[10.5vw] font-bold leading-[0.92] tracking-tight text-paper break-words sm:text-[9vw] md:text-[6.4vw]">
-              Deconstructing
-              <br />
-              Challenges.
-            </h1>
-            <p className="mt-4 max-w-md font-mono text-lg font-light lowercase tracking-tight text-mist md:ml-24 md:text-2xl">
-              reconstructing solutions.
-            </p>
-          </motion.div>
+        <div className="relative flex h-full flex-col justify-end">
+          <Container className="pb-16 md:pb-20">
+            <motion.div style={{ opacity: headlineOpacity, y: headlineY }} className="max-w-4xl">
+              <h1 className="font-sans text-[8.6vw] font-black uppercase leading-[0.86] tracking-tight text-paper break-words sm:text-[7vw] md:text-[6.6vw]">
+                Deconstructing
+                <br />
+                <span className="text-mist">Challenges.</span>
+              </h1>
+              <p className="mt-5 max-w-md font-mono text-lg font-light lowercase tracking-tight text-mist md:ml-28 md:text-2xl">
+                reconstructing solutions.
+              </p>
+            </motion.div>
+          </Container>
 
-          <motion.p
-            style={{ opacity: headlineOpacity }}
-            className="mt-10 font-mono text-[11px] uppercase tracking-[0.3em] text-mist/70"
-          >
-            Scroll — 01 / 06
-          </motion.p>
+          <motion.div style={{ opacity: headlineOpacity }} className="border-t border-mist/15">
+            <Marquee items={TICKER} className="py-4" />
+          </motion.div>
         </div>
       </div>
     </section>
