@@ -42,7 +42,7 @@ export function Hero() {
   const glowOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section id="top" ref={sectionRef} className="relative h-[160vh] bg-black">
+    <section id="top" ref={sectionRef} className="ground-dark relative h-[160vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div style={{ opacity: glowOpacity }}>
           <Glow className="left-1/2 top-[8%] -translate-x-1/3" size={1000} color="#d0e4e8" />
@@ -56,15 +56,15 @@ export function Hero() {
           <ParticleField progress={assembly} className="h-full w-full" />
         </motion.div>
 
-        <div className="relative flex h-full flex-col justify-end">
-          <Container className="pb-16 md:pb-20">
-            <motion.div style={{ opacity: headlineOpacity, y: headlineY }} className="max-w-5xl">
+        <div className="relative flex h-full flex-col items-center justify-end text-center">
+          <Container className="flex flex-col items-center pb-16 md:pb-20">
+            <motion.div style={{ opacity: headlineOpacity, y: headlineY }} className="mx-auto max-w-5xl">
               <h1 className="font-sans text-[9.5vw] font-normal uppercase leading-[0.94] tracking-[-0.01em] text-paper break-words sm:text-[7.5vw] md:text-[7vw]">
                 Deconstructing
                 <br />
                 <span className="text-mist">Challenges.</span>
               </h1>
-              <p className="mt-6 max-w-lg font-mono text-xl font-light lowercase tracking-tight text-mist/90 md:ml-1 md:text-2xl">
+              <p className="mx-auto mt-6 max-w-lg font-mono text-xl font-light lowercase tracking-tight text-mist/90 md:text-2xl">
                 reconstructing solutions.
               </p>
             </motion.div>

@@ -19,7 +19,7 @@ export function Glow({
       style={{
         width: size,
         height: size,
-        background: `radial-gradient(circle, ${color}55 0%, ${color}22 35%, transparent 70%)`,
+        background: `radial-gradient(circle, ${color}80 0%, ${color}40 35%, transparent 70%)`,
       }}
     />
   );

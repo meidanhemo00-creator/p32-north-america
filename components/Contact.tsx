@@ -12,7 +12,7 @@ const FIELDS = [
 
 export function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden bg-black py-24 md:py-32">
+    <section id="contact" className="ground-dark relative overflow-hidden py-24 md:py-32">
       <Glow className="left-[10%] top-0 -translate-y-1/3" size={800} />
       <Container className="grid gap-14 md:grid-cols-[0.9fr_1.1fr] md:gap-20">
         <motion.div
@@ -27,7 +27,7 @@ export function Contact() {
             <br />
             Briefing
           </h2>
-          <p className="mt-6 max-w-md font-mono text-base leading-relaxed text-mist/80">
+          <p className="mt-6 max-w-md font-mono text-lg leading-relaxed text-mist/90">
             For qualified inquiries from nations, agencies, and prime partners.{" "}
             <span className="text-mist">[ Placeholder — confirm eligibility copy ]</span>
           </p>

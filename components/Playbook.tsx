@@ -124,7 +124,7 @@ export function Playbook() {
   const Visual = VISUALS[Math.min(displayIndex, 3)];
 
   return (
-    <section id="playbook" ref={sectionRef} className="relative h-[380vh] bg-black">
+    <section id="playbook" ref={sectionRef} className="ground-dark relative h-[380vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         <Glow className="right-[10%] top-1/3 -translate-y-1/2" size={800} />
         <Container className="absolute left-0 right-0 top-8 md:top-10">
@@ -133,8 +133,8 @@ export function Playbook() {
 
         {!isClosing ? (
           <Container className="flex h-full flex-col items-center justify-center gap-10 md:flex-row md:justify-between">
-            <div className="max-w-xl">
-              <div className="mb-8 flex gap-2 md:gap-3">
+            <div className="w-full min-w-0 max-w-xl">
+              <div className="mb-8 flex flex-wrap gap-2 md:gap-3">
                 {STEPS.map((s, i) => (
                   <button
                     key={s.tag}
@@ -152,11 +152,11 @@ export function Playbook() {
                 ))}
               </div>
               <motion.div key={displayIndex} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-                <h3 className="font-sans text-4xl font-normal uppercase leading-[0.98] tracking-tight text-paper md:text-6xl">
+                <h3 className="break-words font-sans text-[9vw] font-normal uppercase leading-[0.98] tracking-tight text-paper sm:text-4xl md:text-6xl">
                   {STEPS[displayIndex].title}
                 </h3>
                 <p className="mt-5 font-sans text-xl font-light text-mist md:text-2xl">{STEPS[displayIndex].lead}</p>
-                <p className="mt-4 max-w-md font-mono text-base leading-relaxed text-mist/80">
+                <p className="mt-4 max-w-md font-mono text-lg leading-relaxed text-mist/90">
                   {STEPS[displayIndex].body}
                 </p>
               </motion.div>

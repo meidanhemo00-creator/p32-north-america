@@ -46,13 +46,13 @@ export function Uniqueness() {
             <br />
             <span className="font-light normal-case italic">trusted executor.</span>
           </h2>
-          <p className="mt-6 max-w-md font-mono text-base leading-relaxed text-navy/80">
+          <p className="mt-6 max-w-md font-mono text-lg leading-relaxed text-navy/90">
             p32 operates without conflict of interest. we manage the entire lifecycle — from
             scouting and development, to integration — to ensure an unfair advantage in the field.
           </p>
         </motion.div>
 
-        <div className="glass-panel-light relative h-[45vh] overflow-hidden rounded-sm grayscale md:h-[60vh]">
+        <div className="glass-panel-light relative h-[45vh] overflow-hidden rounded-sm saturate-[0.4] md:h-[60vh]">
           <SectionImage
             src="/images/uniqueness-interchange.svg"
             alt="Clean graphic aerial view of a highway interchange"

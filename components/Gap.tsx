@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { MotionValue, motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionImage } from "./SectionImage";
 import { Container } from "./Container";
+import { Glow } from "./Glow";
 
 const PROBLEMS = [
   {
@@ -70,7 +71,7 @@ function GapBlock({
   // side (md+); on a single mobile column, rotation just causes overlap.
   const [isDesktop, setIsDesktop] = useState(false);
   useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
     const update = () => setIsDesktop(mq.matches);
     update();
     mq.addEventListener("change", update);
@@ -120,7 +121,7 @@ function GapBlock({
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMoveHandler}
       onPointerUp={onPointerUp}
-      className={`group relative flex h-72 w-full max-w-sm shrink-0 cursor-grab touch-pan-y select-none flex-col justify-between overflow-hidden rounded-sm border p-7 shadow-2xl shadow-black/40 backdrop-blur-sm active:cursor-grabbing md:-ml-14 md:h-80 md:w-80 md:p-8 md:first:ml-0 ${TONE_CLASSES[tone]}`}
+      className={`group relative flex h-72 w-full max-w-sm shrink-0 cursor-grab touch-pan-y select-none flex-col justify-between overflow-hidden rounded-sm border p-7 shadow-2xl shadow-black/40 backdrop-blur-sm active:cursor-grabbing lg:-ml-14 lg:h-80 lg:w-80 lg:p-8 lg:first:ml-0 ${TONE_CLASSES[tone]}`}
     >
       <span
         aria-hidden="true"
@@ -130,12 +131,12 @@ function GapBlock({
       </span>
       <span className="relative font-mono text-xs opacity-60">{tag}</span>
       <div className="relative">
-        <h3 className="font-sans text-2xl font-normal uppercase leading-snug tracking-tight md:text-3xl">{title}</h3>
+        <h3 className="break-words font-sans text-2xl font-normal uppercase leading-snug tracking-tight md:text-3xl">{title}</h3>
         <motion.p
           initial={{ opacity: 0, height: 0 }}
           whileHover={{ opacity: 1, height: "auto" }}
           transition={{ duration: 0.3 }}
-          className="mt-3 overflow-hidden font-mono text-base leading-relaxed opacity-75 group-focus-within:opacity-100"
+          className="mt-3 overflow-hidden font-mono text-base leading-relaxed opacity-85 group-focus-within:opacity-100"
         >
           {body}
         </motion.p>
@@ -155,23 +156,24 @@ export function Gap() {
   const headOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section id="gap" ref={sectionRef} className="relative h-[200vh] bg-black">
+    <section id="gap" ref={sectionRef} className="ground-dark relative h-[200vh]">
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
-        <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0 grayscale">
+        <Glow className="right-[8%] top-[12%]" size={700} />
+        <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0 saturate-[0.35] contrast-[1.1]">
           <SectionImage src="/images/gap-industrial.svg" alt="Dark industrial ceiling with surveillance domes, claustrophobic warehouse mood" />
         </motion.div>
         <div className="absolute inset-0 bg-black/40" />
 
-        <Container>
-          <motion.div style={{ opacity: headOpacity }} className="relative pt-24 md:pt-28">
+        <Container className="flex flex-col items-center text-center">
+          <motion.div style={{ opacity: headOpacity }} className="relative mx-auto pt-24 md:pt-28">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">02 — The Gap in Modern Defense</p>
-            <h2 className="mt-4 max-w-3xl font-sans text-5xl font-normal uppercase leading-[0.98] tracking-tight text-paper md:text-7xl">
+            <h2 className="mx-auto mt-4 max-w-3xl break-words font-sans text-[10.5vw] font-normal uppercase leading-[0.98] tracking-tight text-paper sm:text-6xl md:text-7xl">
               Today&apos;s challenges are <span className="text-mist">threefold.</span>
             </h2>
           </motion.div>
         </Container>
 
-        <div className="relative flex flex-1 flex-col items-center justify-center gap-8 overflow-y-auto px-6 pb-16 pt-8 md:flex-row md:gap-0 md:overflow-visible md:px-14">
+        <div className="relative flex flex-1 flex-col items-center justify-center gap-8 overflow-y-auto px-6 pb-16 pt-8 lg:flex-row lg:gap-0 lg:overflow-visible lg:px-14">
           {PROBLEMS.map((problem, i) => (
             <GapBlock
               key={problem.tag}

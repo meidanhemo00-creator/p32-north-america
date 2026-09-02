@@ -62,16 +62,23 @@ body {
 }
 
 .glass-panel {
-  background: rgba(250, 250, 250, 0.06);
+  background: linear-gradient(160deg, rgba(208, 228, 232, 0.1), rgba(0, 24, 50, 0.14));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(208, 228, 232, 0.14);
+  border: 1px solid rgba(208, 228, 232, 0.22);
+  box-shadow: inset 0 1px 0 rgba(208, 228, 232, 0.15);
 }
+/* Dark section ground: near-black with a faint navy undertone rather than
+   flat #000, so the black/white foundation still reads as "ours". */
+.ground-dark {
+  background: radial-gradient(ellipse 120% 80% at 50% 0%, #0a1a2e 0%, #050809 55%, #000000 100%);
+}
+
 .glass-panel-light {
-  background: rgba(0, 24, 50, 0.05);
+  background: linear-gradient(160deg, rgba(208, 228, 232, 0.25), rgba(0, 24, 50, 0.05));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 24, 50, 0.1);
+  border: 1px solid rgba(0, 24, 50, 0.14);
 }
 
 @media (prefers-reduced-motion: reduce) {

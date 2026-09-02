@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { SectionImage } from "./SectionImage";
 import { Container } from "./Container";
+import { Glow } from "./Glow";
 
 const TAGS = ["Operational Command", "Deep Tech R&D", "Field-Tested", "Multi-Domain"];
 
@@ -15,7 +16,7 @@ export function Team() {
   });
 
   const blur = useTransform(scrollYProgress, [0, 0.6], [0, 10]);
-  const blurFilter = useTransform(blur, (b) => `blur(${b}px) grayscale(1)`);
+  const blurFilter = useTransform(blur, (b) => `blur(${b}px) saturate(0.35) contrast(1.1)`);
   const focusRadius = useTransform(scrollYProgress, [0.1, 0.6], [70, 9]);
   const clip = useTransform(focusRadius, (r) => `circle(${r}% at 62% 55%)`);
 
@@ -49,9 +50,10 @@ export function Team() {
       id="team"
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="relative h-[190vh] bg-black"
+      className="ground-dark relative h-[190vh]"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
+        <Glow className="left-1/2 top-0 -translate-x-1/2" size={900} />
         <motion.div style={{ filter: blurFilter, x: driftX, y: driftY }} className="absolute inset-[-6%]">
           <SectionImage src="/images/team-crowd.svg" alt="Crowded urban crosswalk at night, one still figure among the blurred crowd" />
         </motion.div>
@@ -62,13 +64,13 @@ export function Team() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/20" />
 
         <Container className="relative flex h-full flex-col justify-between py-24 md:py-28">
-          <div className="max-w-3xl">
+          <div className="mx-auto max-w-3xl text-center">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">
               05 — A Small Team for Big Challenges
             </p>
             <motion.h2
               style={{ opacity: headOpacity }}
-              className="mt-6 font-sans text-6xl font-normal uppercase leading-[0.94] tracking-tight text-paper sm:text-8xl md:text-[7.5vw]"
+              className="mt-6 break-words font-sans text-[13vw] font-normal uppercase leading-[0.94] tracking-tight text-paper sm:text-8xl md:text-[7.5vw]"
             >
               The world sees
               <br />
@@ -79,7 +81,7 @@ export function Team() {
           <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">
             <motion.p
               style={{ opacity: quoteOpacity, y: quoteY }}
-              className="glass-panel max-w-md rounded-sm p-6 font-mono text-base font-light lowercase leading-relaxed text-mist/90 md:p-7"
+              className="glass-panel max-w-md rounded-sm p-6 font-mono text-lg font-light lowercase leading-relaxed text-mist/90 md:p-7"
             >
               it almost never sees the people who built it. our team combines elite operational
               command experience with decades of proven technological innovation — we come from
@@ -94,7 +96,7 @@ export function Team() {
               <SectionImage
                 src="/images/team-crowd.svg"
                 alt=""
-                className="grayscale"
+                className="saturate-[0.7]"
                 style={{ objectPosition: "62% 58%", transform: "scale(2.4)" }}
               />
               <div className="absolute inset-0 border border-paper/10" />
