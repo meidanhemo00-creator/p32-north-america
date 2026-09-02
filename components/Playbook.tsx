@@ -124,7 +124,7 @@ export function Playbook() {
   const Visual = VISUALS[Math.min(displayIndex, 3)];
 
   return (
-    <section id="playbook" ref={sectionRef} className="relative h-[440vh] bg-navy">
+    <section id="playbook" ref={sectionRef} className="relative h-[380vh] bg-black">
       <div className="sticky top-0 h-screen overflow-hidden">
         <Glow className="right-[10%] top-1/3 -translate-y-1/2" size={800} />
         <Container className="absolute left-0 right-0 top-8 md:top-10">
@@ -152,11 +152,11 @@ export function Playbook() {
                 ))}
               </div>
               <motion.div key={displayIndex} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-                <h3 className="font-sans text-4xl font-black uppercase leading-[0.95] text-paper md:text-6xl">
+                <h3 className="font-sans text-4xl font-normal uppercase leading-[0.98] tracking-tight text-paper md:text-6xl">
                   {STEPS[displayIndex].title}
                 </h3>
-                <p className="mt-4 font-sans text-lg font-light text-mist md:text-xl">{STEPS[displayIndex].lead}</p>
-                <p className="mt-4 max-w-md font-mono text-sm leading-relaxed text-mist/70">
+                <p className="mt-5 font-sans text-xl font-light text-mist md:text-2xl">{STEPS[displayIndex].lead}</p>
+                <p className="mt-4 max-w-md font-mono text-base leading-relaxed text-mist/80">
                   {STEPS[displayIndex].body}
                 </p>
               </motion.div>
@@ -171,7 +171,7 @@ export function Playbook() {
             style={{ opacity: closingOpacity, scale: closingScale }}
             className="flex h-full flex-col items-center justify-center px-6 text-center"
           >
-            <p className="font-sans text-4xl font-black uppercase text-paper sm:text-6xl md:text-7xl">
+            <p className="font-sans text-4xl font-normal uppercase text-paper sm:text-6xl md:text-8xl">
               We deliver defense.
               <br />
               <span className="font-mono font-light lowercase text-mist">we execute.</span>

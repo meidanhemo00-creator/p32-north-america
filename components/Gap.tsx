@@ -35,7 +35,7 @@ const PROBLEMS = [
 const TONE_CLASSES = {
   dark: "bg-charcoal/90 border-mist/15 text-paper",
   light: "bg-paper border-paper/40 text-navy",
-  mist: "bg-navy border-mist/25 text-paper",
+  mist: "bg-black border-mist/20 text-paper",
 };
 
 function GapBlock({
@@ -130,12 +130,12 @@ function GapBlock({
       </span>
       <span className="relative font-mono text-xs opacity-60">{tag}</span>
       <div className="relative">
-        <h3 className="font-sans text-xl font-bold uppercase leading-snug md:text-2xl">{title}</h3>
+        <h3 className="font-sans text-2xl font-normal uppercase leading-snug tracking-tight md:text-3xl">{title}</h3>
         <motion.p
           initial={{ opacity: 0, height: 0 }}
           whileHover={{ opacity: 1, height: "auto" }}
           transition={{ duration: 0.3 }}
-          className="mt-3 overflow-hidden font-mono text-sm leading-relaxed opacity-75 group-focus-within:opacity-100"
+          className="mt-3 overflow-hidden font-mono text-base leading-relaxed opacity-75 group-focus-within:opacity-100"
         >
           {body}
         </motion.p>
@@ -155,17 +155,17 @@ export function Gap() {
   const headOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
-    <section id="gap" ref={sectionRef} className="relative h-[220vh] bg-charcoal">
+    <section id="gap" ref={sectionRef} className="relative h-[200vh] bg-black">
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
-        <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0">
+        <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0 grayscale">
           <SectionImage src="/images/gap-industrial.svg" alt="Dark industrial ceiling with surveillance domes, claustrophobic warehouse mood" />
         </motion.div>
-        <div className="absolute inset-0 bg-charcoal/40" />
+        <div className="absolute inset-0 bg-black/40" />
 
         <Container>
           <motion.div style={{ opacity: headOpacity }} className="relative pt-24 md:pt-28">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">02 — The Gap in Modern Defense</p>
-            <h2 className="mt-3 max-w-3xl font-sans text-4xl font-black uppercase leading-[0.95] text-paper md:text-6xl">
+            <h2 className="mt-4 max-w-3xl font-sans text-5xl font-normal uppercase leading-[0.98] tracking-tight text-paper md:text-7xl">
               Today&apos;s challenges are <span className="text-mist">threefold.</span>
             </h2>
           </motion.div>

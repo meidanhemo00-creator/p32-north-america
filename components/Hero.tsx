@@ -42,11 +42,11 @@ export function Hero() {
   const glowOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <section id="top" ref={sectionRef} className="relative h-[180vh] bg-navy">
+    <section id="top" ref={sectionRef} className="relative h-[160vh] bg-black">
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div style={{ opacity: glowOpacity }}>
-          <Glow className="left-1/2 top-[8%] -translate-x-1/3" size={1100} />
-          <Glow className="right-0 bottom-[20%] translate-x-1/3" size={700} color="#001832" />
+          <Glow className="left-1/2 top-[8%] -translate-x-1/3" size={1000} color="#d0e4e8" />
+          <Glow className="right-0 bottom-[20%] translate-x-1/3" size={600} color="#001832" />
         </motion.div>
 
         <motion.div
@@ -58,19 +58,19 @@ export function Hero() {
 
         <div className="relative flex h-full flex-col justify-end">
           <Container className="pb-16 md:pb-20">
-            <motion.div style={{ opacity: headlineOpacity, y: headlineY }} className="max-w-4xl">
-              <h1 className="font-sans text-[8.6vw] font-black uppercase leading-[0.86] tracking-tight text-paper break-words sm:text-[7vw] md:text-[6.6vw]">
+            <motion.div style={{ opacity: headlineOpacity, y: headlineY }} className="max-w-5xl">
+              <h1 className="font-sans text-[9.5vw] font-normal uppercase leading-[0.94] tracking-[-0.01em] text-paper break-words sm:text-[7.5vw] md:text-[7vw]">
                 Deconstructing
                 <br />
                 <span className="text-mist">Challenges.</span>
               </h1>
-              <p className="mt-5 max-w-md font-mono text-lg font-light lowercase tracking-tight text-mist md:ml-28 md:text-2xl">
+              <p className="mt-6 max-w-lg font-mono text-xl font-light lowercase tracking-tight text-mist/90 md:ml-1 md:text-2xl">
                 reconstructing solutions.
               </p>
             </motion.div>
           </Container>
 
-          <motion.div style={{ opacity: headlineOpacity }} className="border-t border-mist/15">
+          <motion.div style={{ opacity: headlineOpacity }} className="border-t border-paper/10">
             <Marquee items={TICKER} className="py-4" />
           </motion.div>
         </div>

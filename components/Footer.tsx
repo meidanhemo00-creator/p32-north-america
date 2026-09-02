@@ -3,7 +3,7 @@ import { Container } from "./Container";
 
 export function Footer() {
   return (
-    <footer className="border-t border-mist/15 bg-navy py-10">
+    <footer className="border-t border-paper/10 bg-black py-10">
       <Container className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-3">
           <LogoMark className="h-4 w-4 text-mist" />

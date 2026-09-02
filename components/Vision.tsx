@@ -39,38 +39,38 @@ export function Vision() {
       id="vision"
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="relative h-[180vh] bg-navy"
+      className="relative h-[150vh] bg-black"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div
           style={{ scale: imgScale, x: parallaxX, y: parallaxY }}
-          className="absolute inset-[-5%]"
+          className="absolute inset-[-5%] grayscale"
         >
           <SectionImage src="/images/vision-earth-orbit.svg" alt="Earth from orbit at night, city-light grid visible on the surface" />
         </motion.div>
         <motion.div
           style={{ opacity: glowOpacity }}
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/60"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy/50 via-transparent to-navy" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
 
         <Container className="relative flex h-full flex-col justify-center">
           <div className="glass-panel max-w-3xl rounded-sm p-7 md:p-10">
             <p className="font-mono text-xs uppercase tracking-[0.3em] text-mist">01 — The Vision</p>
             <motion.h2
               style={{ letterSpacing }}
-              className="mt-4 font-sans text-[11vw] font-extrabold uppercase leading-[0.95] text-paper sm:text-[7vw] md:text-[4.6vw]"
+              className="mt-5 font-sans text-[11vw] font-normal uppercase leading-[0.95] text-paper sm:text-[7vw] md:text-[4.6vw]"
             >
               Defense Solution
               <br />
               Architects
             </motion.h2>
-            <p className="mt-3 max-w-2xl font-sans text-xl font-light italic text-mist md:text-3xl">
+            <p className="mt-4 max-w-2xl font-sans text-2xl font-light italic text-mist md:text-3xl">
               that will make your <span className="not-italic text-paper">mission possible</span>.
             </p>
             <motion.p
               style={{ opacity: subOpacity, y: subY }}
-              className="mt-6 max-w-md font-mono text-sm leading-relaxed text-mist/80"
+              className="mt-6 max-w-md font-mono text-base leading-relaxed text-mist/90"
             >
               trusted by nations and intelligence agencies around the globe to bridge the gap
               between complex operational needs and cutting-edge execution.

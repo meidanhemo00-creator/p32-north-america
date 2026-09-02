@@ -10,11 +10,20 @@ export function SectionImage({
   src,
   alt,
   className = "",
+  style,
 }: {
   src: string;
   alt: string;
   className?: string;
+  style?: React.CSSProperties;
 }) {
-  // eslint-disable-next-line @next/next/no-img-element -- SVG scene assets, not photos needing next/image optimization
-  return <img src={withBasePath(src)} alt={alt} className={`absolute inset-0 h-full w-full object-cover ${className}`} />;
+  return (
+    // eslint-disable-next-line @next/next/no-img-element -- SVG scene assets, not photos needing next/image optimization
+    <img
+      src={withBasePath(src)}
+      alt={alt}
+      className={`absolute inset-0 h-full w-full object-cover ${className}`}
+      style={style}
+    />
+  );
 }

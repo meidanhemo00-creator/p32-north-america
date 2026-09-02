@@ -22,8 +22,8 @@ export function Nav() {
   });
 
   const bg = useTransform(scrollY, [0, typeof window !== "undefined" ? window.innerHeight * 0.7 : 500], [
-    "rgba(0,24,50,0)",
-    "rgba(0,24,50,0.75)",
+    "rgba(0,0,0,0)",
+    "rgba(0,0,0,0.75)",
   ]);
   const blurPx = useTransform(scrollY, [0, typeof window !== "undefined" ? window.innerHeight * 0.7 : 500], [0, 16]);
   const backdropFilter = useTransform(blurPx, (b) => `blur(${b}px)`);
@@ -67,7 +67,7 @@ export function Nav() {
             animate={{ clipPath: "circle(150% at 100% 0%)" }}
             exit={{ clipPath: "circle(0% at 100% 0%)" }}
             transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[60] flex flex-col items-start justify-center gap-3 bg-navy px-8 md:px-20"
+            className="fixed inset-0 z-[60] flex flex-col items-start justify-center gap-3 bg-black px-8 md:px-20"
           >
             <button
               onClick={() => setOpen(false)}
@@ -84,7 +84,7 @@ export function Nav() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 + i * 0.06, duration: 0.5 }}
-                className="font-sans text-[13vw] font-black uppercase leading-[1.05] text-paper transition-colors hover:text-mist md:text-[6vw]"
+                className="font-sans text-[13vw] font-normal uppercase leading-[1.05] tracking-tight text-paper transition-colors hover:text-mist md:text-[6vw]"
               >
                 {link.label}
               </motion.a>

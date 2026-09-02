@@ -35,24 +35,24 @@ export function Uniqueness() {
       id="uniqueness"
       ref={sectionRef}
       onPointerMove={handlePointerMove}
-      className="relative h-[180vh] bg-paper text-navy"
+      className="relative h-[160vh] bg-paper text-navy"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
       <Container className="grid h-screen grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
         <motion.div style={{ opacity: textOpacity }} className="relative z-10">
           <p className="font-mono text-xs uppercase tracking-[0.3em] text-navy/60">03 — Our Uniqueness</p>
-          <h2 className="mt-4 font-sans text-[10vw] font-black uppercase leading-[0.92] sm:text-[6vw] md:text-[3.6vw]">
+          <h2 className="mt-5 font-sans text-[10vw] font-normal uppercase leading-[0.94] sm:text-[6vw] md:text-[3.6vw]">
             An objective,
             <br />
             <span className="font-light normal-case italic">trusted executor.</span>
           </h2>
-          <p className="mt-6 max-w-md font-mono text-sm leading-relaxed text-navy/70">
+          <p className="mt-6 max-w-md font-mono text-base leading-relaxed text-navy/80">
             p32 operates without conflict of interest. we manage the entire lifecycle — from
             scouting and development, to integration — to ensure an unfair advantage in the field.
           </p>
         </motion.div>
 
-        <div className="glass-panel-light relative h-[45vh] overflow-hidden rounded-sm md:h-[60vh]">
+        <div className="glass-panel-light relative h-[45vh] overflow-hidden rounded-sm grayscale md:h-[60vh]">
           <SectionImage
             src="/images/uniqueness-interchange.svg"
             alt="Clean graphic aerial view of a highway interchange"
@@ -66,13 +66,13 @@ export function Uniqueness() {
           >
             <motion.path
               d="M0 420 C 250 420 260 120 480 120 C 620 120 620 320 760 320 C 900 320 900 60 1200 60"
-              stroke="#001832"
+              stroke="#181717"
               strokeWidth="2"
               style={{ pathLength }}
             />
             <motion.path
               d="M0 300 C 220 300 300 400 500 400 C 680 400 700 180 900 180 C 1050 180 1080 340 1200 340"
-              stroke="#001832"
+              stroke="#181717"
               strokeOpacity="0.35"
               strokeWidth="1.5"
               style={{ pathLength }}
@@ -81,7 +81,7 @@ export function Uniqueness() {
 
           <motion.div
             style={{ scale: numeralScale, opacity: numeralOpacity }}
-            className="pointer-events-none absolute bottom-4 right-4 font-mono text-[7rem] font-bold leading-none text-navy/90 md:text-[9rem]"
+            className="pointer-events-none absolute bottom-4 right-4 font-mono text-[7rem] font-normal leading-none text-navy/90 md:text-[9rem]"
           >
             01
           </motion.div>
