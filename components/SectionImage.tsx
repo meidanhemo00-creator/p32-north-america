@@ -1,3 +1,5 @@
+import { withBasePath } from "@/lib/basePath";
+
 /**
  * Renders one of the temporary section images. See
  * public/images/README.md for the full list of files, what each one
@@ -14,5 +16,5 @@ export function SectionImage({
   className?: string;
 }) {
   // eslint-disable-next-line @next/next/no-img-element -- SVG scene assets, not photos needing next/image optimization
-  return <img src={src} alt={alt} className={`absolute inset-0 h-full w-full object-cover ${className}`} />;
+  return <img src={withBasePath(src)} alt={alt} className={`absolute inset-0 h-full w-full object-cover ${className}`} />;
 }

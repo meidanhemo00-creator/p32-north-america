@@ -14,6 +14,11 @@ const jbMono = JetBrains_Mono({
   display: "swap",
 });
 
+// Set only by the GitHub Pages preview workflow (.github/workflows/gh-pages.yml) —
+// keeps this temporary review deployment out of search engines without
+// affecting a future real deploy, where this stays unset/indexable.
+const isPreviewDeploy = process.env.GITHUB_PAGES === "true";
+
 export const metadata: Metadata = {
   title: "P32 — Defense Solution Architects",
   description:
@@ -25,6 +30,9 @@ export const metadata: Metadata = {
       "Deconstructing Challenges. Reconstructing Solutions. Defense solution architects that make your mission possible.",
     type: "website",
   },
+  ...(isPreviewDeploy
+    ? { robots: { index: false, follow: false, nocache: true } }
+    : {}),
 };
 
 export default function RootLayout({
