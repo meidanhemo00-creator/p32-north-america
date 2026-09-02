@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { MotionValue, motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { Container } from "./Container";
 import { Glow } from "./Glow";
+import { SectionImage } from "./SectionImage";
 
 const STEPS = [
   {
@@ -126,6 +127,10 @@ export function Playbook() {
   return (
     <section id="playbook" ref={sectionRef} className="ground-dark relative h-[380vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="absolute inset-0 opacity-70 saturate-[0.5] contrast-[1.1]">
+          <SectionImage src="/photos/playbook-command.jpg" alt="Operators at a darkened command console, wall of monitors ahead" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/40" />
         <Glow className="right-[10%] top-1/3 -translate-y-1/2" size={800} />
         <Container className="absolute left-0 right-0 top-8 md:top-10">
           <span className="font-mono text-xs uppercase tracking-[0.3em] text-mist">04 — The Playbook</span>

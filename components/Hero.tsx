@@ -6,6 +6,7 @@ import { ParticleField } from "./ParticleField";
 import { Container } from "./Container";
 import { Glow } from "./Glow";
 import { Marquee } from "./Marquee";
+import { SectionImage } from "./SectionImage";
 
 const TICKER = [
   "DEEP TECH",
@@ -44,6 +45,10 @@ export function Hero() {
   return (
     <section id="top" ref={sectionRef} className="ground-dark relative h-[160vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.4] saturate-[0.3] contrast-[1.1] blur-[1px]">
+          <SectionImage src="/photos/hero-crowd.jpg" alt="Abstract overhead view of a crowd dispersing through a city street at night" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black" />
         <motion.div style={{ opacity: glowOpacity }}>
           <Glow className="left-1/2 top-[8%] -translate-x-1/3" size={1000} color="#d0e4e8" />
           <Glow className="right-0 bottom-[20%] translate-x-1/3" size={600} color="#001832" />

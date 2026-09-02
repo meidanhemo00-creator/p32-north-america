@@ -52,12 +52,13 @@ export function Uniqueness() {
           </p>
         </motion.div>
 
-        <div className="glass-panel-light relative h-[45vh] overflow-hidden rounded-sm saturate-[0.4] md:h-[60vh]">
+        <div className="glass-panel-light relative h-[50vh] overflow-hidden rounded-sm saturate-[0.45] contrast-[1.05] md:h-[65vh]">
           <SectionImage
-            src="/images/uniqueness-interchange.svg"
-            alt="Clean graphic aerial view of a highway interchange"
-            className="opacity-50 mix-blend-multiply"
+            src="/photos/uniqueness-highway.jpg"
+            alt="Aerial view of a highway interchange at night, traffic light trails"
+            className="opacity-90"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-paper/40 via-transparent to-transparent" />
           <motion.svg
             style={{ skewX, skewY }}
             viewBox="0 0 1200 500"

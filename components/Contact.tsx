@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Container } from "./Container";
 import { Glow } from "./Glow";
+import { SectionImage } from "./SectionImage";
 
 const FIELDS = [
   { name: "name", label: "Name", type: "text" },
@@ -13,6 +14,10 @@ const FIELDS = [
 export function Contact() {
   return (
     <section id="contact" className="ground-dark relative overflow-hidden py-24 md:py-32">
+      <div className="absolute inset-0 opacity-60 saturate-[0.55]">
+        <SectionImage src="/photos/contact-skyline.jpg" alt="Silhouette looking out over a city skyline at night" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black" />
       <Glow className="left-[10%] top-0 -translate-y-1/3" size={800} />
       <Container className="grid gap-14 md:grid-cols-[0.9fr_1.1fr] md:gap-20">
         <motion.div

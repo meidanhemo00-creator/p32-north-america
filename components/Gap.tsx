@@ -152,7 +152,7 @@ export function Gap() {
     target: sectionRef,
     offset: ["start start", "end start"],
   });
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.3], [0.5, 0.22]);
+  const bgOpacity = useTransform(scrollYProgress, [0, 0.3], [0.7, 0.4]);
   const headOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
   return (
@@ -160,7 +160,7 @@ export function Gap() {
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
         <Glow className="right-[8%] top-[12%]" size={700} />
         <motion.div style={{ opacity: bgOpacity }} className="absolute inset-0 saturate-[0.35] contrast-[1.1]">
-          <SectionImage src="/images/gap-industrial.svg" alt="Dark industrial ceiling with surveillance domes, claustrophobic warehouse mood" />
+          <SectionImage src="/photos/gap-surveillance.jpg" alt="Dark industrial ceiling with surveillance domes, claustrophobic warehouse mood" />
         </motion.div>
         <div className="absolute inset-0 bg-black/40" />
 

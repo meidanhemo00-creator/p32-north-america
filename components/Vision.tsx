@@ -46,7 +46,7 @@ export function Vision() {
           style={{ scale: imgScale, x: parallaxX, y: parallaxY }}
           className="absolute inset-[-5%] saturate-[0.55] contrast-[1.05]"
         >
-          <SectionImage src="/images/vision-earth-orbit.svg" alt="Earth from orbit at night, city-light grid visible on the surface" />
+          <SectionImage src="/photos/vision-orbit.jpg" alt="Earth from orbit at night, city-light grid visible on the surface" />
         </motion.div>
         <motion.div
           style={{ opacity: glowOpacity }}

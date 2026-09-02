@@ -55,10 +55,10 @@ export function Team() {
       <div className="sticky top-0 h-screen overflow-hidden">
         <Glow className="left-1/2 top-0 -translate-x-1/2" size={900} />
         <motion.div style={{ filter: blurFilter, x: driftX, y: driftY }} className="absolute inset-[-6%]">
-          <SectionImage src="/images/team-crowd.svg" alt="Crowded urban crosswalk at night, one still figure among the blurred crowd" />
+          <SectionImage src="/photos/team-crossing.jpg" alt="Crowded urban crosswalk at night, one still figure among the blurred crowd" />
         </motion.div>
         <motion.div style={{ clipPath: clip }} className="absolute inset-[-6%]">
-          <SectionImage src="/images/team-crowd.svg" alt="" />
+          <SectionImage src="/photos/team-crossing.jpg" alt="" />
         </motion.div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-black/70" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-black/20" />
@@ -94,10 +94,10 @@ export function Team() {
               className="relative hidden h-40 w-32 shrink-0 overflow-hidden rounded-sm border border-paper/20 shadow-2xl shadow-black/60 md:block"
             >
               <SectionImage
-                src="/images/team-crowd.svg"
+                src="/photos/team-detail.jpg"
                 alt=""
                 className="saturate-[0.7]"
-                style={{ objectPosition: "62% 58%", transform: "scale(2.4)" }}
+                style={{ objectPosition: "50% 45%", transform: "scale(1.3)" }}
               />
               <div className="absolute inset-0 border border-paper/10" />
               <span className="absolute bottom-2 left-2 font-mono text-[9px] uppercase tracking-[0.2em] text-paper/70">
