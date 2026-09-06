@@ -1,34 +1,35 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-navy: #001832;
-  --color-charcoal: #181717;
-  --color-paper: #fafafa;
-  --color-mist: #d0e4e8;
+  --color-ink: #090909;
+  --color-paper: #f1efeb;
+  --color-red: #a3241f;
+  --color-red-bright: #c1352b;
+  --color-charcoal: #1c1b19;
+  --color-archive: #a8a29a;
 
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-jbmono);
+  --font-display: var(--font-oswald);
+  --font-body: var(--font-host-grotesk);
 }
 
 html {
   scroll-behavior: smooth;
-  background: #001832;
+  background: #090909;
 }
 
 body {
-  background: var(--color-navy);
+  background: var(--color-ink);
   color: var(--color-paper);
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 ::selection {
-  background: var(--color-mist);
-  color: var(--color-navy);
+  background: var(--color-red);
+  color: var(--color-paper);
 }
 
-/* Thin, quiet scrollbar so it doesn't fight the visual system */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -36,49 +37,55 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(208, 228, 232, 0.25);
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-25%);
-  }
-}
-.animate-marquee {
-  animation: marquee 34s linear infinite;
+  background: rgba(241, 239, 235, 0.2);
 }
 
 /* Subtle grain overlay, fixed above every section, never intercepting input. */
 .grain-overlay {
   position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: 50;
   pointer-events: none;
   opacity: 0.05;
   mix-blend-mode: overlay;
 }
 
-.glass-panel {
-  background: linear-gradient(160deg, rgba(208, 228, 232, 0.1), rgba(0, 24, 50, 0.14));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(208, 228, 232, 0.22);
-  box-shadow: inset 0 1px 0 rgba(208, 228, 232, 0.15);
+.font-display {
+  font-family: var(--font-display);
 }
-/* Dark section ground: near-black with a faint navy undertone rather than
-   flat #000, so the black/white foundation still reads as "ours". */
-.ground-dark {
-  background: radial-gradient(ellipse 120% 80% at 50% 0%, #0a1a2e 0%, #050809 55%, #000000 100%);
+.font-body {
+  font-family: var(--font-body);
 }
 
-.glass-panel-light {
-  background: linear-gradient(160deg, rgba(208, 228, 232, 0.25), rgba(0, 24, 50, 0.05));
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 24, 50, 0.14);
+/* Dark section ground: near-black with a faint vignette rather than flat
+   #000, so photography and red accents keep their depth. */
+.ground-dark {
+  background: radial-gradient(ellipse 120% 80% at 50% 0%, #141210 0%, #0c0b0a 55%, #090909 100%);
+}
+
+.ground-paper {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.chapter-bar {
+  background: var(--color-red);
+}
+
+@keyframes marquee-slow {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee-slow {
+  animation: marquee-slow 90s linear infinite;
+}
+.animate-marquee-slow:hover,
+.animate-marquee-slow:focus-within {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

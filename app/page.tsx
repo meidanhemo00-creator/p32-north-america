@@ -1,12 +1,12 @@
-import { Nav } from "@/components/Nav";
-import { Hero } from "@/components/Hero";
-import { Vision } from "@/components/Vision";
-import { Gap } from "@/components/Gap";
-import { Uniqueness } from "@/components/Uniqueness";
-import { Playbook } from "@/components/Playbook";
-import { Team } from "@/components/Team";
-import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
+import { Nav } from "@/components/duvdevan/Nav";
+import { Hero } from "@/components/duvdevan/Hero";
+import { Introduction } from "@/components/duvdevan/Introduction";
+import { Chapters } from "@/components/duvdevan/Chapters";
+import { FeaturedQuote } from "@/components/duvdevan/FeaturedQuote";
+import { Gallery } from "@/components/duvdevan/Gallery";
+import { Memorial } from "@/components/duvdevan/Memorial";
+import { Purchase } from "@/components/duvdevan/Purchase";
+import { Footer } from "@/components/duvdevan/Footer";
 
 export default function Home() {
   return (
@@ -14,12 +14,12 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Vision />
-        <Gap />
-        <Uniqueness />
-        <Playbook />
-        <Team />
-        <Contact />
+        <Introduction />
+        <Chapters />
+        <FeaturedQuote />
+        <Gallery />
+        <Memorial />
+        <Purchase />
       </main>
       <Footer />
     </>
