@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import { Oswald, Host_Grotesk } from "next/font/google";
+import { Fraunces, Host_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const oswald = Oswald({
-  variable: "--font-oswald",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "variable",
+  style: ["normal", "italic"],
+  axes: ["SOFT", "WONK"],
   display: "swap",
 });
 
@@ -41,8 +43,8 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className={`${oswald.variable} ${hostGrotesk.variable} antialiased`}>
+    <html lang="en" className={`${fraunces.variable} ${hostGrotesk.variable}`}>
+      <body className="antialiased">
         <svg className="grain-overlay" aria-hidden="true">
           <filter id="grainFilter">
             <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
