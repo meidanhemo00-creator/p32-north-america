@@ -24,8 +24,6 @@ export function Team() {
   const headOpacity = useTransform(scrollYProgress, [0, 0.2], [0.2, 1]);
   const quoteOpacity = useTransform(scrollYProgress, [0.35, 0.6], [0, 1]);
   const quoteY = useTransform(scrollYProgress, [0.35, 0.6], [24, 0]);
-  const detailOpacity = useTransform(scrollYProgress, [0.5, 0.75], [0, 1]);
-  const detailScale = useTransform(scrollYProgress, [0.5, 0.85], [0.85, 1]);
   const tagsOpacity = useTransform(scrollYProgress, [0.6, 0.85], [0, 1]);
 
   const markScale = useTransform(scrollYProgress, [0.6, 1], [1, 0.06]);
@@ -77,7 +75,7 @@ export function Team() {
             </motion.h2>
           </div>
 
-          <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">
+          <div className="flex flex-col items-start md:items-end">
             <motion.p
               style={{ opacity: quoteOpacity, y: quoteY }}
               className="glass-panel max-w-md rounded-sm p-6 font-mono text-lg font-light lowercase leading-relaxed text-mist/90 md:p-7"
@@ -87,22 +85,6 @@ export function Team() {
               the units that faced these challenges, and bring the track record of scaling ideas
               into successful war capabilities based on advanced technology.
             </motion.p>
-
-            <motion.div
-              style={{ opacity: detailOpacity, scale: detailScale }}
-              className="relative hidden h-40 w-32 shrink-0 overflow-hidden rounded-sm border border-paper/20 shadow-2xl shadow-black/60 md:block"
-            >
-              <SectionImage
-                src="/photos/team-detail.jpg"
-                alt=""
-                className="saturate-[0.7]"
-                style={{ objectPosition: "50% 45%", transform: "scale(1.3)" }}
-              />
-              <div className="absolute inset-0 border border-paper/10" />
-              <span className="absolute bottom-2 left-2 font-mono text-[9px] uppercase tracking-[0.2em] text-paper/70">
-                Detail
-              </span>
-            </motion.div>
           </div>
 
           <motion.div style={{ opacity: tagsOpacity }} className="flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] uppercase tracking-[0.25em] text-mist/60">

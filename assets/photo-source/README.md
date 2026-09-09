@@ -22,7 +22,6 @@ that folder's README for the mapping and processing steps).
 | `9.png` | `public/photos/uniqueness-highway.jpg` | Aerial highway interchange at night, light trails |
 | `16.png` | `public/photos/playbook-command.jpg` | Operators at a darkened command console, wall of monitors |
 | `10.png` | `public/photos/team-crossing.jpg` | Crowded city crosswalk (Times Square), one still figure among the blurred crowd |
-| `19.png` | `public/photos/team-detail.jpg` | Close crop, a lone figure walking through a blurred crowd |
 | `15.png` | `public/photos/contact-skyline.jpg` | Silhouette at a window overlooking a city skyline at night |
 
 Not yet used anywhere — available for future sections, alternate crops, or
@@ -30,6 +29,7 @@ a rotating/secondary treatment:
 
 | File | Depicts |
 |---|---|
+| `19.png` | Close crop, a lone figure walking through a blurred crowd (was briefly `team-detail.jpg`, a small thumbnail — removed under the "no small images" direction) |
 | `11.png` | Earth from orbit, wider angle (alternate to `12.png`) |
 | `13.png` | Silhouette walking through a crowded transit terminal, blue tone |
 | `14.png` | Foggy stadium crowd at night, floodlights |

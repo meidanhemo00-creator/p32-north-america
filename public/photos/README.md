@@ -15,11 +15,15 @@ images.
 | `hero-crowd.jpg` | `Hero` — background layer behind the particle field | low opacity, desaturated, slight blur |
 | `vision-orbit.jpg` | `Vision` — full-bleed background | scroll-parallax scale, saturate/contrast filter |
 | `gap-surveillance.jpg` | `Gap` — full-bleed background | scroll-fade opacity, saturate/contrast filter |
-| `uniqueness-highway.jpg` | `Uniqueness` — split-screen panel | animated line-graphic overlay on top |
+| `uniqueness-highway.jpg` | `Uniqueness` — large split-screen panel (enlarged to dominate its column) | animated line-graphic overlay on top |
 | `playbook-command.jpg` | `Playbook` — full-bleed background | low opacity, desaturated, dark gradient overlay for text contrast |
 | `team-crossing.jpg` | `Team` — blurred backdrop + scroll-revealed sharp focus circle | blur↔sharp scroll transition, color-drift filter |
-| `team-detail.jpg` | `Team` — small detail-crop thumbnail | cropped/zoomed via `object-position` + `transform` |
 | `contact-skyline.jpg` | `Contact` — full-bleed background | low opacity, desaturated, dark gradient overlay |
+
+`team-detail.jpg` (a small cropped thumbnail) was removed per the site-wide
+"no small images" direction — every image on the site is now full-bleed or
+a large, dominant panel; if it isn't large enough to matter, it's gone
+rather than shrunk into a decorative corner.
 
 Rendered through `components/SectionImage.tsx` (or a direct `<img>` for
 Hero/Playbook/Contact's background layers, same component underneath).

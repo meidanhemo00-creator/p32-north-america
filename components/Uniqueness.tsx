@@ -39,7 +39,7 @@ export function Uniqueness() {
       className="relative h-[130vh] bg-paper text-navy"
     >
       <div className="sticky top-0 h-screen overflow-hidden">
-      <Container className="grid h-screen grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16">
+      <Container className="grid h-screen grid-cols-1 items-center gap-8 md:grid-cols-[0.85fr_1.15fr] md:gap-10">
         <motion.div style={{ opacity: textOpacity }} className="relative z-10">
           <SectionLabel index="03" label="Our Uniqueness" tone="dark" className="mb-5" />
           <h2 className="break-normal font-sans text-[clamp(1.75rem,6vw,4.25rem)] font-normal uppercase leading-[0.98]">
@@ -53,7 +53,7 @@ export function Uniqueness() {
           </p>
         </motion.div>
 
-        <div className="glass-panel-light relative h-[50vh] overflow-hidden rounded-sm saturate-[0.45] contrast-[1.05] md:h-[65vh]">
+        <div className="glass-panel-light relative h-[50vh] overflow-hidden rounded-sm saturate-[0.45] contrast-[1.05] md:h-[84vh]">
           <SectionImage
             src="/photos/uniqueness-highway.jpg"
             alt="Aerial view of a highway interchange at night, traffic light trails"

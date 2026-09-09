@@ -6,6 +6,7 @@ import { Container } from "./Container";
 import { Glow } from "./Glow";
 import { SectionImage } from "./SectionImage";
 import { SectionLabel } from "./SectionLabel";
+import { GridPattern } from "./GridPattern";
 
 const STEPS = [
   {
@@ -126,6 +127,7 @@ export function Playbook() {
           <SectionImage src="/photos/playbook-command.jpg" alt="Operators at a darkened command console, wall of monitors ahead" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/40" />
+        <GridPattern className="text-mist/[0.07]" />
         <Glow className="right-[10%] top-1/3 -translate-y-1/2" size={800} />
 
         <Container className="relative flex flex-col gap-6 md:gap-9">
